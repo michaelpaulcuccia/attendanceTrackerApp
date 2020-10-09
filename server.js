@@ -18,9 +18,11 @@ connection.once('open', () => {
 
 //access to routes
 const classesRoute = require('./routes/ClassesRoutes');
+const studentsRoute = require('./routes/StudentsRoutes');
 
 //use routes 
 app.use('/classes', classesRoute); //- the route ending with /classes will use the classesRoute variable
+app.use('/students', studentsRoute); //- the route ending with /students will use the studentsRoute variable
 
 const PORT = process.env.PORT || 5000;
 

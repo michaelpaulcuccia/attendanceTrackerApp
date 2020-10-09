@@ -26,16 +26,6 @@ router.post('/', (req, res) => {
         .then(item => res.json(item))
 });
 
-/*
-{
-	"title": "titleTest1",
-    "trainingtype": "trainingtypeTest1",
-    "days": ["Monday", "Tuesday"],
-    "starttime": "starttimeTest1",
-    "endtime": "endtimeTest1"
-}
-*/
-
 //DELETE
 //http://localhost:5000/classes/:id
 router.delete('/:id', (req, res) => {
@@ -45,5 +35,35 @@ router.delete('/:id', (req, res) => {
         .then(() => res.json({success: true})))
         .catch(() => res.status(404).json({success: false}))
 });
+
+//UPDATE
+//http://localhost:5000/classes/update/:id
+router.post('/update/:id',(req, res) => {
+    let update;
+    Classes.findByIdAndUpdate(req.params.id, update)
+        .then(update => {
+            update.title = req.body.title;
+            update.trainingtype = req.body.trainingtype;
+            update.days = req.body.days;
+            update.starttime = req.body.starttime;
+            update.endtime = req.body.endtime;
+           
+            update.save()
+                .then(() => res.json({ classUpdated: true}))
+                .catch(() => res.status(400).json({ classUpdated: false}))
+        })
+
+        .catch(err => res.status(400).json('Error: ' + err));
+});
+
+/*
+{
+	"title": "updatedTest1",
+	"trainingtype": "updatedtrainingtype",
+	"days": ["Friday", "Saturday"],
+	"starttime": "updatedstarttime",
+	"endtime": "updatedendtime"
+}
+*/
 
 module.exports = router;
