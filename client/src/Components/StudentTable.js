@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Children } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Table, Button } from 'react-bootstrap';
 
@@ -20,12 +20,19 @@ function StudentTable() {
         getData();
     }, []);
 
-    
+    let buttonArray = [];
+    let btn = 'click to edit or delete';
+    for (let i = 0; i < students.length; i++){
+        buttonArray.push(btn);
+    };
+
+  
     return (
         <div>
             <Table striped bordered hover responsive>
                 <thead>
                     <tr>
+                        <th>Edit/Delete</th>
                         <th>First Name</th>
                         <th>Last Name</th>
                         <th>Phone Number</th>
@@ -42,6 +49,7 @@ function StudentTable() {
                 </thead>
                 <tbody>
                     <tr>
+                        <td>{buttonArray.map((item, index) => (<option key={'btn' + [index]} name={'btn'} value={'btn' + [index]}>{item}</option>))}</td>
                         <td>{students.map((student, index) => (<option key={student.firstname + [index]} name={student.firstname} value={student.firstname}>{student.firstname}</option>))}</td>
                         <td>{students.map((student, index) => (<option key={student.lastname + [index]} name={student.lastname} value={student.lastname}>{student.lastname}</option>))}</td>
                         <td>{students.map((student, index) => (<option key={student.phonenumber + [index]} name={student.phonenumber} value={student.phonenumber}>{student.phonenumber}</option>))}</td>
