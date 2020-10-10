@@ -1,9 +1,10 @@
 import React from 'react';
+import StudentTable from './Components/StudentTable';
 
 const App = () => {
   return (
     <div className="App">
-      Hello, from App.js
+      <StudentTable />
     </div>
   );
 }

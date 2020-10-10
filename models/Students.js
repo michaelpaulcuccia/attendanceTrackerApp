@@ -34,12 +34,10 @@ const StudentSchema = new Schema({
         type: Date,
     },
     classes: {
-        attended: [
-            {
-                type: Schema.Types.ObjectId,
-                ref: "Classes"
-            }
-        ],
+        attended: {
+            type: Number,
+            default: 0
+        },
         gi: {
             type: Number,
             default: 0
