@@ -1,12 +1,12 @@
 import React from 'react';
-//import StudentTable from './Components/StudentTable';
-import StudentTableAgGrid from './Components/StudentTableAgGrid';
+import StudentTable from './Components/StudentTable';
+import ClassTable from './Components/ClassTable';
 
 const App = () => {
   return (
     <div className="App">
-      {/* <StudentTable /> */}
-      <StudentTableAgGrid />
+      <StudentTable />
+      <ClassTable />
     </div>
   );
 }
