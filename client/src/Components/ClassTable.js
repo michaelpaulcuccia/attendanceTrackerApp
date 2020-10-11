@@ -1,9 +1,10 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react';
+import { Button } from 'react-bootstrap';
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-alpine-dark.css";
 
-const ClassTable = () => {
+const ClassTable = ({ showClass, setShowClass }) => {
 
     const [classes, setClasses] = useState([]);
 
@@ -12,14 +13,18 @@ const ClassTable = () => {
             try {
                 const response = await fetch("http://localhost:5000/classes");
                 const data = await response.json();
-                console.log(data)
-                setClasses(data)
+                console.log(data);
+                setClasses(data);
             } catch (err) {
-                console.error(err.message)
+                console.error(err.message);
             }
         }
         getData();
     }, []);
+
+    const handleShowHide = () => {
+        setShowClass(!showClass);
+    };
 
     const columnDefs = [
         {
@@ -34,8 +39,7 @@ const ClassTable = () => {
 
                 eButton.addEventListener('click', function () {
 
-                    console.log('click')
-                    console.log(params.data)
+                    console.log(params.data);
 
                 });
 
@@ -51,6 +55,10 @@ const ClassTable = () => {
 
     return (
         <div className="ag-theme-alpine-dark" style={{ height: 400, width: '80%', margin: 'auto', marginTop: '35px' }}>
+            <Button variant='outline-dark'
+                onClick={handleShowHide}>
+                Close
+            </Button>
             <AgGridReact
                 columnDefs={columnDefs}
                 rowData={classes}>

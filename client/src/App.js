@@ -35,9 +35,17 @@ const App = () => {
         </Navbar.Collapse>
       </Navbar>
 
-      {showStudent && <StudentTable />}
+      {showStudent && 
+      <StudentTable 
+        showStudent={showStudent}
+        setShowStudent={setShowStudent}
+      />}
       <br></br>
-      {showClass && <ClassTable />}
+      {showClass && 
+      <ClassTable 
+        showClass={showClass}
+        setShowClass={setShowClass}
+      />}
 
     </div>
   );
