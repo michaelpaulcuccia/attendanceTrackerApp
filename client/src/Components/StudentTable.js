@@ -43,7 +43,7 @@ function StudentTable() {
                 return eDiv;
             }
         },
-        { headerName: "Last Name", field: "firstname", sortable: true, filter: true },
+        { headerName: "First Name", field: "firstname", sortable: true, filter: true },
         { headerName: "Last Name", field: "firstname", sortable: true, filter: true },
         { headerName: "Phone Number", field: "phonenumber", sortable: true, filter: true },
         { headerName: "Email", field: "email", sortable: true, filter: true },
@@ -58,7 +58,7 @@ function StudentTable() {
     ]
 
     return (
-        <div className="ag-theme-alpine-dark" style={{ height: 400, width: '80%' }}>
+        <div className="ag-theme-alpine-dark" style={{ height: 400, width: '80%', margin: 'auto', marginTop: '20px' }}>
             <AgGridReact
                 columnDefs={columnDefs}
                 rowData={students}>

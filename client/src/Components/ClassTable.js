@@ -50,7 +50,7 @@ const ClassTable = () => {
     ];
 
     return (
-        <div className="ag-theme-alpine-dark" style={{ height: 400, width: '80%' }}>
+        <div className="ag-theme-alpine-dark" style={{ height: 400, width: '80%', margin: 'auto', marginTop: '35px' }}>
             <AgGridReact
                 columnDefs={columnDefs}
                 rowData={classes}>
