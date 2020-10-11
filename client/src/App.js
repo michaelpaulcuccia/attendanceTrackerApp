@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
+import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import StudentTable from './Components/StudentTable';
 import ClassTable from './Components/ClassTable';
 
@@ -16,12 +17,28 @@ const App = () => {
   };
 
   return (
-    <div className="App">
-      <button onClick={handleShowStudent}>Show Student Table</button>
+    <div>
+      <Navbar bg="dark" variant='dark' expand="lg">
+        <Navbar.Brand href="#home">Radji Barrett Jiu-Jitsu</Navbar.Brand>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="mr-auto">
+            <Nav.Link href="#home">Home</Nav.Link>
+            <NavDropdown title="Select" id="basic-nav-dropdown">
+              <NavDropdown.Item onSelect={handleShowStudent}>Students</NavDropdown.Item>
+              <NavDropdown.Item onSelect={handleShowClass}>Classes</NavDropdown.Item>
+              <NavDropdown.Divider />
+              <NavDropdown.Item href="home">Home</NavDropdown.Item>
+            </NavDropdown>
+          </Nav>
+
+        </Navbar.Collapse>
+      </Navbar>
+
       {showStudent && <StudentTable />}
       <br></br>
-      <button onClick={handleShowClass}>Show Class Table</button>
       {showClass && <ClassTable />}
+
     </div>
   );
 }
