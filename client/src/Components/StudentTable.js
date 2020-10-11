@@ -1,12 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Button } from 'react-bootstrap';
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-alpine-dark.css";
+import StudentModal from '../Modals/StudentModal';
 
-const StudentTable = ({showStudent, setShowStudent}) => {
+const StudentTable = ({ showStudent, setShowStudent }) => {
 
     const [students, setStudents] = useState([]);
+    const [showModal, setShowModal] = useState(false);
 
     useEffect(() => {
         const getData = async () => {
@@ -22,9 +24,18 @@ const StudentTable = ({showStudent, setShowStudent}) => {
         getData();
     }, []);
 
+    //open and close table
     const handleShowHide = () => {
         setShowStudent(!showStudent);
     };
+
+    //closes modal
+    const closeModal = useCallback(
+        (event) => {
+            event.preventDefault()
+            setShowModal(showModal)
+        }, []
+    );
 
     const columnDefs = [
         {
@@ -39,8 +50,8 @@ const StudentTable = ({showStudent, setShowStudent}) => {
 
                 eButton.addEventListener('click', function () {
 
-                    console.log('click')
-                    console.log(params.data)
+                    setShowModal(!showModal)
+                    console.log(params.data);
 
                 });
 
@@ -62,17 +73,30 @@ const StudentTable = ({showStudent, setShowStudent}) => {
     ];
 
     return (
-        <div className="ag-theme-alpine-dark" style={{ height: 400, width: '80%', margin: 'auto', marginTop: '20px' }}>
-            <Button variant='outline-dark'
-                onClick={handleShowHide}>
-                Close
+        <div>
+
+            <div className="ag-theme-alpine-dark" style={{ height: 400, width: '80%', margin: 'auto', marginTop: '20px' }}>
+                <Button variant='outline-dark'
+                    onClick={handleShowHide}>
+                    Close
             </Button>
-            <AgGridReact
-                columnDefs={columnDefs}
-                rowData={students}
+                <AgGridReact
+                    columnDefs={columnDefs}
+                    rowData={students}
                 >
-            </AgGridReact>
+                </AgGridReact>
+            </div>
+
+            <div>
+                <StudentModal
+                showModal={showModal}
+                    setShowModal={setShowModal}
+                    closeModal={closeModal}
+                />
+            </div>
+
         </div>
+
     )
 }
 
