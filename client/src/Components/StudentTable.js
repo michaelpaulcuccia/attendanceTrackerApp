@@ -11,8 +11,7 @@ const StudentTable = ({ showStudent, setShowStudent }) => {
     const [students, setStudents] = useState([]);
     const [showModal, setShowModal] = useState(false);
     const [modalData, setModalData] = useState({});
-    const [hasChanged, setHasChanged] = useState(false)
-
+    
     const getData = async () => {
         try {
             const response = await fetch("http://localhost:5000/students");
@@ -63,7 +62,7 @@ const StudentTable = ({ showStudent, setShowStudent }) => {
             }
         },
         { headerName: "First Name", field: "firstname", sortable: true, filter: true },
-        { headerName: "Last Name", field: "firstname", sortable: true, filter: true },
+        { headerName: "Last Name", field: "lastname", sortable: true, filter: true },
         { headerName: "Phone Number", field: "phonenumber", sortable: true, filter: true },
         { headerName: "Email", field: "email", sortable: true, filter: true },
         { headerName: "Belt", field: "belt", sortable: true, filter: true },

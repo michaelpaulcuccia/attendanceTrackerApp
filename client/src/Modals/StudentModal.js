@@ -21,7 +21,18 @@ const StudentModal = props => {
     }
 
     //edit a student
-    const onSubmit = async (data) => {
+    const onSubmit = (data) => {
+
+        Object.keys(data).forEach(key => {
+            if (data[key] === '') {
+                data[key] = props.modalData[key]
+            }
+        });
+        /*
+        if (data.firstname === '') {
+           data.firstname = modalData.firstname;
+       }
+       */
 
         let id = props.modalData._id;
 
