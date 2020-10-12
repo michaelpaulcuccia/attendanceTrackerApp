@@ -55,7 +55,7 @@ const ClassTable = ({ showClass, setShowClass }) => {
 
     return (
         <div className="ag-theme-alpine-dark" style={{ height: 400, width: '80%', margin: 'auto', marginTop: '35px' }}>
-            <Button variant='outline-dark'
+            <Button variant='dark'
                 onClick={handleShowHide}>
                 Close
             </Button>

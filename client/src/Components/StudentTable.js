@@ -9,6 +9,7 @@ const StudentTable = ({ showStudent, setShowStudent }) => {
 
     const [students, setStudents] = useState([]);
     const [showModal, setShowModal] = useState(false);
+    const [modalData, setModalData] = useState({});
 
     useEffect(() => {
         const getData = async () => {
@@ -34,8 +35,7 @@ const StudentTable = ({ showStudent, setShowStudent }) => {
         (event) => {
             event.preventDefault()
             setShowModal(showModal)
-        }, []
-    );
+        },[]);
 
     const columnDefs = [
         {
@@ -51,7 +51,8 @@ const StudentTable = ({ showStudent, setShowStudent }) => {
                 eButton.addEventListener('click', function () {
 
                     setShowModal(!showModal)
-                    console.log(params.data);
+                    setModalData(params.data)
+                    //console.log(params.data);
 
                 });
 
@@ -76,7 +77,7 @@ const StudentTable = ({ showStudent, setShowStudent }) => {
         <div>
 
             <div className="ag-theme-alpine-dark" style={{ height: 400, width: '80%', margin: 'auto', marginTop: '20px' }}>
-                <Button variant='outline-dark'
+                <Button variant='dark'
                     onClick={handleShowHide}>
                     Close
             </Button>
@@ -92,6 +93,7 @@ const StudentTable = ({ showStudent, setShowStudent }) => {
                 showModal={showModal}
                     setShowModal={setShowModal}
                     closeModal={closeModal}
+                    modalData={modalData}
                 />
             </div>
 

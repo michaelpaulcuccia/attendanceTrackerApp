@@ -46,7 +46,6 @@ const App = () => {
         showClass={showClass}
         setShowClass={setShowClass}
       />}
-
     </div>
   );
 }
