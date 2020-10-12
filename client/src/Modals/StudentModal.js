@@ -9,11 +9,22 @@ const StudentModal = props => {
 
     const { register, handleSubmit } = useForm();
 
+    const getData = async () => {
+        try {
+            const response = await fetch("http://localhost:5000/students");
+            const data = await response.json();
+            console.log(data);
+            props.setStudents(data);
+        } catch (err) {
+            console.error(err.message);
+        }
+    }
+
     //edit a student
-    const onSubmit = (data) => {
-       
+    const onSubmit = async (data) => {
+
         let id = props.modalData._id;
-        
+
         let updateObj = {
             firstname: data.firstname,
             lastname: data.lastname,
@@ -23,19 +34,21 @@ const StudentModal = props => {
             stripes: data.stripes,
             dateoflastpromotion: data.dateoflastpromotion
         };
-        
+
         axios.put(`http://localhost:5000/students/update/${id}`, updateObj)
             .then(response => {
                 console.log(response)
+                //refreshes table with new data
+                getData()
+                //closes modal
+                props.setShowModal(!props.showModal);
             })
             .catch(error => {
                 console.log(error)
             })
-        
+
         window.alert(`${updateObj.firstname} ${updateObj.lastname} has been successfully updated!`);
-    
-        //closes modal
-        props.setShowModal(!props.showModal);
+
     }
 
     //delete a student
@@ -47,12 +60,17 @@ const StudentModal = props => {
         axios.delete(`http://localhost:5000/students/${props.modalData._id}`, deleteObj)
             .then(response => {
                 console.log(response)
+                //refreshes table with new data
+                getData()
+                //closes modal
+                props.setShowModal(!props.showModal);
             })
             .catch(error => {
                 console.log(error)
             })
-        //closes modal
-        props.setShowModal(!props.showModal);
+
+        window.alert('Deletion Complete');
+
     }
 
     return (

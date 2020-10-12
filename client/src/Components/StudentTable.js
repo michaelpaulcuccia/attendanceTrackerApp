@@ -11,18 +11,20 @@ const StudentTable = ({ showStudent, setShowStudent }) => {
     const [students, setStudents] = useState([]);
     const [showModal, setShowModal] = useState(false);
     const [modalData, setModalData] = useState({});
+    const [hasChanged, setHasChanged] = useState(false)
+
+    const getData = async () => {
+        try {
+            const response = await fetch("http://localhost:5000/students");
+            const data = await response.json();
+            console.log(data);
+            setStudents(data);
+        } catch (err) {
+            console.error(err.message);
+        }
+    }
 
     useEffect(() => {
-        const getData = async () => {
-            try {
-                const response = await fetch("http://localhost:5000/students");
-                const data = await response.json();
-                console.log(data);
-                setStudents(data);
-            } catch (err) {
-                console.error(err.message);
-            }
-        }
         getData();
     }, []);
 
@@ -95,6 +97,8 @@ const StudentTable = ({ showStudent, setShowStudent }) => {
                     setShowModal={setShowModal}
                     closeModal={closeModal}
                     modalData={modalData}
+                    students={students}
+                    setStudents={setStudents}
                 />
             </div>
 
