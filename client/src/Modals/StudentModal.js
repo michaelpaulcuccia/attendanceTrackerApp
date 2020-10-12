@@ -53,11 +53,21 @@ const StudentModal = props => {
 
     //delete a student
     const handleDelete = () => {
-        //console.log(props.modalData._id)
+        
+        let id = props.modalData._id;
+        
         let deleteObj = {
-            _id: props.modalData._id
+            _id: id,
+            firstname: props.modalData.firstname,
+            lastname: props.modalData.lastname,
+            phonenumber: props.modalData.phonenumber,
+            email: props.modalData.email,
+            belt: props.modalData.belt,
+            stripes: props.modalData.stripes,
+            dateoflastpromotion: props.modalData.dateoflastpromotion
         };
-        axios.delete(`http://localhost:5000/students/${props.modalData._id}`, deleteObj)
+
+        axios.delete(`http://localhost:5000/students/${id}`, deleteObj)
             .then(response => {
                 console.log(response)
                 //refreshes table with new data
@@ -69,7 +79,7 @@ const StudentModal = props => {
                 console.log(error)
             })
 
-        window.alert('Deletion Complete');
+        window.alert(`Deletion of ${deleteObj.firstname} ${deleteObj.lastname} complete.`);
 
     }
 
