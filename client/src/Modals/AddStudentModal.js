@@ -7,7 +7,7 @@ const AddStudentModal = () => {
     const { register, handleSubmit } = useForm();
 
     const onSubmit = (data) => {
-        console.log(data.firstname);
+        
         let newStudent = {
             firstname: data.firstname,
             lastname: data.lastname,
@@ -16,7 +16,8 @@ const AddStudentModal = () => {
             belt: data.belt,
             stripes: data.stripes,
             dateoflastpromotion: data.dateoflastpromotion,
-        }
+        };
+
         axios.post('http://localhost:5000/students', newStudent)
             .then(response => {
                 console.log(response)
@@ -24,6 +25,8 @@ const AddStudentModal = () => {
             .catch(error => {
                 console.log(error)
             })
+        
+        window.alert(`${newStudent.firstname} ${newStudent.lastname} has been successfully added!`);
     };
 
     return (

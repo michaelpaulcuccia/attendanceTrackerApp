@@ -2,15 +2,57 @@ import React from 'react';
 import { Modal, Button } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useForm } from "react-hook-form";
-import  '../Static/StudentModalStyle.css'
+import '../Static/StudentModalStyle.css';
+import axios from 'axios';
 
 const StudentModal = props => {
 
     const { register, handleSubmit } = useForm();
 
+    //edit a student
     const onSubmit = (data) => {
-        console.log(data.firstname)
-        props.setShowModal(!props.showModal)
+       
+        let id = props.modalData._id;
+        
+        let updateObj = {
+            firstname: data.firstname,
+            lastname: data.lastname,
+            phonenumber: data.phonenumber,
+            email: data.email,
+            belt: data.belt,
+            stripes: data.stripes,
+            dateoflastpromotion: data.dateoflastpromotion
+        };
+        
+        axios.put(`http://localhost:5000/students/update/${id}`, updateObj)
+            .then(response => {
+                console.log(response)
+            })
+            .catch(error => {
+                console.log(error)
+            })
+        
+        window.alert(`${updateObj.firstname} ${updateObj.lastname} has been successfully updated!`);
+    
+        //closes modal
+        props.setShowModal(!props.showModal);
+    }
+
+    //delete a student
+    const handleDelete = () => {
+        //console.log(props.modalData._id)
+        let deleteObj = {
+            _id: props.modalData._id
+        };
+        axios.delete(`http://localhost:5000/students/${props.modalData._id}`, deleteObj)
+            .then(response => {
+                console.log(response)
+            })
+            .catch(error => {
+                console.log(error)
+            })
+        //closes modal
+        props.setShowModal(!props.showModal);
     }
 
     return (
@@ -46,7 +88,7 @@ const StudentModal = props => {
                                 style={{ marginLeft: '5px' }}
                             >
                             </input>
-                        </p>                 
+                        </p>
                         <p className='field_text'>Phone Number
                             <input
                                 type='text'
@@ -104,9 +146,12 @@ const StudentModal = props => {
                         </p>
                         <br></br>
                         <Button variant="primary" type='submit'>Save Changes</Button>
-                        <Button style={{marginLeft: '5px'}} variant='danger' onClick={(event) => props.closeModal(event)}>Cancel</Button>
+                        <Button style={{ marginLeft: '5px' }} variant='secondary' onClick={(event) => props.closeModal(event)}>Cancel</Button>
                     </form>
                 </Modal.Body>
+                <Modal.Footer>
+                    <Button variant='danger' onClick={handleDelete}>Delete Student</Button>
+                </Modal.Footer>
             </Modal>
         </div>
     )

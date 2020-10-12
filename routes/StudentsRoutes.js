@@ -41,36 +41,14 @@ router.delete('/:id', (req, res) => {
 
 //UPDATE
 //http://localhost:5000/students/update/:id
-router.post('/update/:id', (req, res) => {
-    let update;
-    Students.findByIdAndUpdate(req.params.id, update)
-        .then(update => {
-            update.firstname = req.body.firstname;
-            update.lastname = req.body.lastname;
-            update.phonenumber = req.body.phonenumber;
-            update.email = req.body.email;
-            update.belt = req.body.belt;
-            update.stripes = req.body.stripes;
-            update.dateoflastpromotion = req.body.dateoflastpromotion;
-
-            update.save()
-                .then(() => res.json({ studentUpdated: true }))
-                .catch(() => res.status(400).json({ studentUpdated: false }))
-        })
-
-        .catch(err => res.status(400).json('Error: ' + err));
+router.route('/update/:id').put((req, res, next) => {
+    Students.findOneAndUpdate({ _id: req.params.id }, { $set: req.body }, (error, data) => {
+        if (error) {
+            return next(error);
+        } else {
+            res.json(data)
+        }
+    });
 });
-
-/*
-{
-    "firstname": "updatedFN",
-    "lastname": "updatedLN",
-    "phonenumber": "(999)999-9999",
-    "email": "updated1@mail.com",
-    "belt": "white",
-    "stripes": 0,
-    "dateoflastpromotion": "10-09-2020"
-}
-*/
 
 module.exports = router;

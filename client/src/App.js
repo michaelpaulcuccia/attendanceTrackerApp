@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import StudentTable from './Components/StudentTable';
 import ClassTable from './Components/ClassTable';
-import AddStudentModal from './Modals/AddStudentModal';
 
 const App = () => {
 
@@ -47,7 +46,6 @@ const App = () => {
         showClass={showClass}
         setShowClass={setShowClass}
       />}
-      <AddStudentModal/>
     </div>
   );
 }
