@@ -2,6 +2,7 @@ import React from 'react';
 import { Modal, Button } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { useForm } from "react-hook-form";
+import  '../Static/StudentModalStyle.css'
 
 const StudentModal = props => {
 
@@ -9,6 +10,7 @@ const StudentModal = props => {
 
     const onSubmit = (data) => {
         console.log(data.firstname)
+        props.setShowModal(!props.showModal)
     }
 
     return (

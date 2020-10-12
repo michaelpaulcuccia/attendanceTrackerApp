@@ -4,6 +4,7 @@ import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-alpine-dark.css";
 import StudentModal from '../Modals/StudentModal';
+import  '../Static/ButtonStyle.css'
 
 const StudentTable = ({ showStudent, setShowStudent }) => {
 
@@ -45,8 +46,8 @@ const StudentTable = ({ showStudent, setShowStudent }) => {
 
                 //HTML
                 var eDiv = document.createElement('div');
-                eDiv.innerHTML = '<span><button class="btn-edit"></button></span>';
-                var eButton = eDiv.querySelectorAll('.btn-edit')[0];
+                eDiv.innerHTML = '<span><button class="btn_table">Edit/Delete</button></span>';
+                var eButton = eDiv.querySelectorAll('.btn_table')[0];
 
                 eButton.addEventListener('click', function () {
 
@@ -90,7 +91,7 @@ const StudentTable = ({ showStudent, setShowStudent }) => {
 
             <div>
                 <StudentModal
-                showModal={showModal}
+                    showModal={showModal}
                     setShowModal={setShowModal}
                     closeModal={closeModal}
                     modalData={modalData}
