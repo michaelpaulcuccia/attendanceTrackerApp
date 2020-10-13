@@ -106,7 +106,7 @@ const StudentModal = props => {
                 </Modal.Header>
                 <Modal.Body>
                     <form onSubmit={handleSubmit(onSubmit)}>
-                        <p className='field_text'>First Name
+                        <p className='field_text'>First Name:
                             <input
                                 type='text'
                                 placeholder={props.editModalData.firstname}
@@ -117,7 +117,7 @@ const StudentModal = props => {
                             >
                             </input>
                         </p>
-                        <p className='field_text'>Last Name
+                        <p className='field_text'>Last Name:
                         <input
                                 type='text'
                                 placeholder={props.editModalData.lastname}
@@ -128,7 +128,7 @@ const StudentModal = props => {
                             >
                             </input>
                         </p>
-                        <p className='field_text'>Phone Number
+                        <p className='field_text'>Phone Number:
                             <input
                                 type='text'
                                 placeholder={props.editModalData.phonenumber}
@@ -139,7 +139,7 @@ const StudentModal = props => {
                             >
                             </input>
                         </p>
-                        <p className='field_text'>Email
+                        <p className='field_text'>Email:
                             <input
                                 type='text'
                                 placeholder={props.editModalData.email}
@@ -150,7 +150,7 @@ const StudentModal = props => {
                             >
                             </input>
                         </p>
-                        <p className='field_text'>Belt
+                        <p className='field_text'>Belt:
                             <input
                                 type='text'
                                 placeholder={props.editModalData.belt}
@@ -161,7 +161,7 @@ const StudentModal = props => {
                             >
                             </input>
                         </p>
-                        <p className='field_text'>Stripes
+                        <p className='field_text'>Stripes:
                             <input
                                 type='text'
                                 placeholder={props.editModalData.stripes}
@@ -172,7 +172,7 @@ const StudentModal = props => {
                             >
                             </input>
                         </p>
-                        <p className='field_text'>Date of Last Promotion
+                        <p className='field_text'>Date of Last Promotion:
                             <input
                                 type='text'
                                 placeholder={props.editModalData.dateoflastpromotion}

@@ -38,18 +38,37 @@ const AddStudentModal = props => {
             show={props.showAddModal}
             closeEditModal={props.closeAddModal}
             >
+            <Modal.Header>
+                    <Modal.Title>Update/Delete Student</Modal.Title>
+                </Modal.Header>
+                <Modal.Body>
                 <form onSubmit={handleSubmit(onSubmit)}>
-                    <input type='text' name='firstname' ref={register} />
-                    <input type='text' name='lastname' ref={register} />
-                    <input type='text' name='phonenumber' ref={register} />
-                    <input type='text' name='email' ref={register} />
-                    <input type='text' name='belt' ref={register} />
-                    <input type='text' name='stripes' ref={register} />
-                    <input type='text' name='dateoflastpromotion' ref={register} />
-                    <button type='submit'>Submit</button>
+                    <p>First Name: 
+                    <input type='text' name='firstname' ref={register} style={{ marginLeft: '5px' }}/>
+                    </p>
+                    <p>Last Name: 
+                    <input type='text' name='lastname' ref={register} style={{ marginLeft: '5px' }} />
+                    </p>
+                    <p>Phone Number: 
+                    <input type='text' name='phonenumber' ref={register} style={{ marginLeft: '5px' }} />
+                    </p>
+                    <p>Email:
+                    <input type='text' name='email' ref={register} style={{ marginLeft: '5px' }} />
+                    </p>
+                    <p>Belt:
+                    <input type='text' name='belt' ref={register} style={{ marginLeft: '5px' }} />
+                    </p>
+                    <p>Stripes:
+                    <input type='text' name='stripes' ref={register} style={{ marginLeft: '5px' }} />
+                    </p>
+                    <p>Date of Last Promotion
+                    <input type='text' name='dateoflastpromotion' ref={register} style={{ marginLeft: '5px' }} />
+                    </p>
+                    <Button variant='primary' type='submit'>Submit</Button>
                     <br></br>
                     <Button variant='secondary' onClick={(event) => props.closeAddModal(event)}>Cancel</Button>
                 </form>
+                </Modal.Body>
             </Modal>
         </div>
     )
