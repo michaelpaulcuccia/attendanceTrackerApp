@@ -25,7 +25,7 @@ const EditClassModal = props => {
         console.log(data)
 
         Object.keys(data).forEach(key => {
-            if (data[key] === '') {
+            if (data[key] === '' || true) {
                 data[key] = props.editModalData[key]
             }
         });
@@ -33,7 +33,9 @@ const EditClassModal = props => {
         if (data.title === '') {
            data.title = editModalData.title;
        }
+       //use `|| true` in the event that a class is not chosen in dropdown
        */
+        
 
         let id = props.editModalData._id;
 
