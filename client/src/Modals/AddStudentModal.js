@@ -2,11 +2,23 @@ import React from 'react';
 import { useForm } from "react-hook-form";
 import { Modal, Button } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import '../Static/AddStudentModalStyle.css';
 import axios from 'axios';
 
 const AddStudentModal = props => {
 
     const { register, handleSubmit } = useForm();
+
+    const getData = async () => {
+        try {
+            const response = await fetch("http://localhost:5000/students");
+            const data = await response.json();
+            console.log(data);
+            props.setStudents(data);
+        } catch (err) {
+            console.error(err.message);
+        }
+    }
 
     const onSubmit = (data) => {
 
@@ -23,51 +35,58 @@ const AddStudentModal = props => {
         axios.post('http://localhost:5000/students', newStudent)
             .then(response => {
                 console.log(response)
+                //refreshes table with new data
+                getData()
+                //closes modal
+                props.setShowAddModal(!props.showAddModal);
             })
             .catch(error => {
                 console.log(error)
             })
 
         window.alert(`${newStudent.firstname} ${newStudent.lastname} has been successfully added!`);
+
+
     };
 
     return (
         <div>
             <Modal
-            backdrop="static"
-            show={props.showAddModal}
-            closeEditModal={props.closeAddModal}
+                backdrop="static"
+                show={props.showAddModal}
+                closeEditModal={props.closeAddModal}
             >
-            <Modal.Header>
+                <Modal.Header>
                     <Modal.Title>Update/Delete Student</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                <form onSubmit={handleSubmit(onSubmit)}>
-                    <p>First Name: 
-                    <input type='text' name='firstname' ref={register} style={{ marginLeft: '5px' }}/>
-                    </p>
-                    <p>Last Name: 
-                    <input type='text' name='lastname' ref={register} style={{ marginLeft: '5px' }} />
-                    </p>
-                    <p>Phone Number: 
-                    <input type='text' name='phonenumber' ref={register} style={{ marginLeft: '5px' }} />
-                    </p>
-                    <p>Email:
-                    <input type='text' name='email' ref={register} style={{ marginLeft: '5px' }} />
-                    </p>
-                    <p>Belt:
-                    <input type='text' name='belt' ref={register} style={{ marginLeft: '5px' }} />
-                    </p>
-                    <p>Stripes:
-                    <input type='text' name='stripes' ref={register} style={{ marginLeft: '5px' }} />
-                    </p>
-                    <p>Date of Last Promotion
-                    <input type='text' name='dateoflastpromotion' ref={register} style={{ marginLeft: '5px' }} />
-                    </p>
-                    <Button variant='primary' type='submit'>Submit</Button>
-                    <br></br>
-                    <Button variant='secondary' onClick={(event) => props.closeAddModal(event)}>Cancel</Button>
-                </form>
+                    <form onSubmit={handleSubmit(onSubmit)}>
+                        <p className='text_field'>First Name:
+                    <input type='text' name='firstname' ref={register} className='input_field' />
+                        </p>
+                        <p className='text_field'>Last Name:
+                    <input type='text' name='lastname' ref={register} className='input_field' />
+                        </p>
+                        <p className='text_field'>Phone Number:
+                    <input type='text' name='phonenumber' ref={register} className='input_field' />
+                        </p>
+                        <p className='text_field'>Email:
+                    <input type='text' name='email' ref={register} className='input_field' />
+                        </p>
+                        <p className='text_field'>Belt:
+                    <input type='text' name='belt' ref={register} className='input_field' />
+                        </p>
+                        <p className='text_field'>Stripes:
+                    <input type='text' name='stripes' ref={register} className='input_field' />
+                        </p>
+                        <p className='text_field'>Date of Last Promotion
+                    <input type='text' name='dateoflastpromotion' ref={register} className='input_field' />
+                        </p>
+                        <div>
+                            <Button variant='primary' type='submit'>Submit</Button>
+                            <Button variant='secondary' style={{ marginLeft: '5px' }} onClick={(event) => props.closeAddModal(event)}>Cancel</Button>
+                        </div>
+                    </form>
                 </Modal.Body>
             </Modal>
         </div>

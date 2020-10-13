@@ -7,6 +7,7 @@ import EditStudentModal from '../Modals/EditStudentModal';
 import AddStudentModal from '../Modals/AddStudentModal';
 import  '../Static/ButtonStyle.css'
 
+
 const StudentTable = ({ showStudent, setShowStudent }) => {
 
     const [students, setStudents] = useState([]);
@@ -23,7 +24,7 @@ const StudentTable = ({ showStudent, setShowStudent }) => {
         } catch (err) {
             console.error(err.message);
         }
-    }
+    }; 
 
     useEffect(() => {
         getData();
@@ -127,6 +128,9 @@ const StudentTable = ({ showStudent, setShowStudent }) => {
                     <AddStudentModal
                     showAddModal={showAddModal}
                     closeAddModal={closeAddModal}
+                    setStudents={setStudents}
+                    showAddModal={showAddModal}
+                    setShowAddModal={setShowAddModal}
                     />
                 } 
             </div>
