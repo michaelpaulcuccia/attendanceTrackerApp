@@ -25,16 +25,16 @@ const StudentModal = props => {
 
         Object.keys(data).forEach(key => {
             if (data[key] === '') {
-                data[key] = props.modalData[key]
+                data[key] = props.editModalData[key]
             }
         });
         /*
         if (data.firstname === '') {
-           data.firstname = modalData.firstname;
+           data.firstname = editModalData.firstname;
        }
        */
 
-        let id = props.modalData._id;
+        let id = props.editModalData._id;
 
         let updateObj = {
             firstname: data.firstname,
@@ -52,7 +52,7 @@ const StudentModal = props => {
                 //refreshes table with new data
                 getData()
                 //closes modal
-                props.setShowModal(!props.showModal);
+                props.setShowEditModal(!props.showEditModal);
             })
             .catch(error => {
                 console.log(error)
@@ -65,17 +65,17 @@ const StudentModal = props => {
     //delete a student
     const handleDelete = () => {
         
-        let id = props.modalData._id;
+        let id = props.editModalData._id;
         
         let deleteObj = {
             _id: id,
-            firstname: props.modalData.firstname,
-            lastname: props.modalData.lastname,
-            phonenumber: props.modalData.phonenumber,
-            email: props.modalData.email,
-            belt: props.modalData.belt,
-            stripes: props.modalData.stripes,
-            dateoflastpromotion: props.modalData.dateoflastpromotion
+            firstname: props.editModalData.firstname,
+            lastname: props.editModalData.lastname,
+            phonenumber: props.editModalData.phonenumber,
+            email: props.editModalData.email,
+            belt: props.editModalData.belt,
+            stripes: props.editModalData.stripes,
+            dateoflastpromotion: props.editModalData.dateoflastpromotion
         };
 
         axios.delete(`http://localhost:5000/students/${id}`, deleteObj)
@@ -84,7 +84,7 @@ const StudentModal = props => {
                 //refreshes table with new data
                 getData()
                 //closes modal
-                props.setShowModal(!props.showModal);
+                props.setShowEditModal(!props.showEditModal);
             })
             .catch(error => {
                 console.log(error)
@@ -98,8 +98,8 @@ const StudentModal = props => {
         <div>
             <Modal
                 backdrop="static"
-                show={props.showModal}
-                closeModal={props.closeModal}
+                show={props.showEditModal}
+                closeEditModal={props.closeEditModal}
             >
                 <Modal.Header>
                     <Modal.Title>Update/Delete Student</Modal.Title>
@@ -109,7 +109,7 @@ const StudentModal = props => {
                         <p className='field_text'>First Name
                             <input
                                 type='text'
-                                placeholder={props.modalData.firstname}
+                                placeholder={props.editModalData.firstname}
                                 name='firstname'
                                 ref={register}
                                 className='active_text'
@@ -120,7 +120,7 @@ const StudentModal = props => {
                         <p className='field_text'>Last Name
                         <input
                                 type='text'
-                                placeholder={props.modalData.lastname}
+                                placeholder={props.editModalData.lastname}
                                 name='lastname'
                                 ref={register}
                                 className='active_text'
@@ -131,7 +131,7 @@ const StudentModal = props => {
                         <p className='field_text'>Phone Number
                             <input
                                 type='text'
-                                placeholder={props.modalData.phonenumber}
+                                placeholder={props.editModalData.phonenumber}
                                 name='phonenumber'
                                 ref={register}
                                 className='active_text'
@@ -142,7 +142,7 @@ const StudentModal = props => {
                         <p className='field_text'>Email
                             <input
                                 type='text'
-                                placeholder={props.modalData.email}
+                                placeholder={props.editModalData.email}
                                 name='email'
                                 ref={register}
                                 className='active_text'
@@ -153,7 +153,7 @@ const StudentModal = props => {
                         <p className='field_text'>Belt
                             <input
                                 type='text'
-                                placeholder={props.modalData.belt}
+                                placeholder={props.editModalData.belt}
                                 name='belt'
                                 ref={register}
                                 className='active_text'
@@ -164,7 +164,7 @@ const StudentModal = props => {
                         <p className='field_text'>Stripes
                             <input
                                 type='text'
-                                placeholder={props.modalData.stripes}
+                                placeholder={props.editModalData.stripes}
                                 name='stripes'
                                 ref={register}
                                 className='active_text'
@@ -175,7 +175,7 @@ const StudentModal = props => {
                         <p className='field_text'>Date of Last Promotion
                             <input
                                 type='text'
-                                placeholder={props.modalData.dateoflastpromotion}
+                                placeholder={props.editModalData.dateoflastpromotion}
                                 name='dateoflastpromotion'
                                 ref={register}
                                 className='active_text'
@@ -185,7 +185,7 @@ const StudentModal = props => {
                         </p>
                         <br></br>
                         <Button variant="primary" type='submit'>Save Changes</Button>
-                        <Button style={{ marginLeft: '5px' }} variant='secondary' onClick={(event) => props.closeModal(event)}>Cancel</Button>
+                        <Button style={{ marginLeft: '5px' }} variant='secondary' onClick={(event) => props.closeEditModal(event)}>Cancel</Button>
                     </form>
                 </Modal.Body>
                 <Modal.Footer>
