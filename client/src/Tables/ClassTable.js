@@ -81,6 +81,8 @@ const ClassTable = ({ showClass, setShowClass }) => {
                     closeEditModal={closeEditModal}
                     editModalData={editModalData}
                     showEditModal={showEditModal}
+                    setShowEditModal={setShowEditModal}
+                    setClasses={setClasses}
                 />
             </div>
 
