@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
-import StudentTable from './Components/StudentTable';
-import ClassTable from './Components/ClassTable';
+import StudentTable from './Tables/StudentTable';
+import ClassTable from './Tables/ClassTable';
+//import EditClassModal from './Modals/EditClassModal';
 
 const App = () => {
 
@@ -46,6 +47,8 @@ const App = () => {
         showClass={showClass}
         setShowClass={setShowClass}
       />}
+
+      {/* <EditClassModal/> */}
     </div>
   );
 }

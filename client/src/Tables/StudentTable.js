@@ -37,7 +37,6 @@ const StudentTable = ({ showStudent, setShowStudent }) => {
 
     //opens and closes add modal
     const handleShowHideAdd = () => {
-        console.log('handleShowHideAdd clicked')
         setShowAddModal(!showAddModal);
     }
 

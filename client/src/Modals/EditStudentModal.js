@@ -13,7 +13,7 @@ const StudentModal = props => {
         try {
             const response = await fetch("http://localhost:5000/students");
             const data = await response.json();
-            console.log(data);
+            //console.log(data);
             props.setStudents(data);
         } catch (err) {
             console.error(err.message);

@@ -1,13 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Button } from 'react-bootstrap';
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-alpine-dark.css";
+import EditClassModal from '../Modals/EditClassModal';
 import  '../Static/ButtonStyle.css'
 
 const ClassTable = ({ showClass, setShowClass }) => {
 
     const [classes, setClasses] = useState([]);
+    const [showEditModal, setShowEditModal] = useState(false);
+    const [editModalData, setEditModalData] = useState({});
 
     useEffect(() => {
         const getData = async () => {
@@ -27,6 +30,13 @@ const ClassTable = ({ showClass, setShowClass }) => {
         setShowClass(!showClass);
     };
 
+     //closes edit modal
+     const closeEditModal = useCallback(
+        (event) => {
+            event.preventDefault()
+            setShowEditModal(showEditModal)
+        },[]);
+
     const columnDefs = [
         {
             headerName: "Edit/Delete",
@@ -40,7 +50,8 @@ const ClassTable = ({ showClass, setShowClass }) => {
 
                 eButton.addEventListener('click', function () {
 
-                    console.log(params.data);
+                    setShowEditModal(!showEditModal);
+                    setEditModalData(params.data);
 
                 });
 
@@ -64,6 +75,16 @@ const ClassTable = ({ showClass, setShowClass }) => {
                 columnDefs={columnDefs}
                 rowData={classes}>
             </AgGridReact>
+
+            <div>
+                <EditClassModal
+                    closeEditModal={closeEditModal}
+                    editModalData={editModalData}
+                    showEditModal={showEditModal}
+                />
+            </div>
+
+        
         </div>
     )
 }
