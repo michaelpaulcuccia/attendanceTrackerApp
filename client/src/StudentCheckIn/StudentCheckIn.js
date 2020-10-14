@@ -26,26 +26,62 @@ const StudentCheckIn = () => {
         getData();
     }, []);
 
+    const updateFunction = (sobj, cobj) => {
+        let classType = cobj.trainingtype
+        console.log(classType);
+
+
+        /*
+        //console.log(sobj)
+        //console.log(sobj.classes.attended)
+
+        let classesObj = sobj.classes;
+        console.log(classesObj)
+
+        const studentsClassesKeys = Object.keys(classesObj);
+        //const studentsClassesValues = Object.values(classesObj);
+
+        for (let i = 0; i < studentsClassesKeys.length; i++){
+            //console.log(studentsClassesKeys[i]);
+            if(classType === studentsClassesKeys[i]){
+                console.log('match');
+                break;
+            }
+        };
+        */        
+
+    };
+
     
     const selectHandler = (e) => {
-
-        //Build a CheckIn Data Object - ID, Hour, Day       
-        //const checkIn = {};
-        //checkIn.now = moment().format('MMMM Do YYYY, h:mm:ss a');
-        //checkIn.time = moment().format('h:mm a');
-        //checkIn.day = moment().format('dddd');
-        //checkIn.ID = id;
-        
+      
         const id = e.target.value
-        
 
-        //See if a class is happening
-        for (let i = 0; i < classes.length; i++){
-            if(moment().isBetween(moment(classes[i].starttime, "h:mm a").subtract(15, 'm'), moment(classes[i].starttime, "h:mm a").add(20, 'm'))){
-                console.log('it is working!')
-            }
-        }
+        //Get Student sing ID
+        let studentObj;
+        for (let i = 0; i < students.length; i++){
+            if(id === students[i]._id){ 
+                studentObj = students[i]
+                break;
+            };
+        };
+        console.log(studentObj)
         
+        //See if a class is happening 
+        //Get Class using time-check
+        let classObj;
+        for (let i = 0; i < classes.length; i++){
+            if(moment().isBetween(moment(classes[i].starttime, "h:mm a").subtract(100, 'm'), moment(classes[i].starttime, "h:mm a").add(100, 'm'))){
+                console.log('There is a class and you will be checked in.')
+                classObj = classes[i]
+                break;
+                //run function to update student's attendance
+            }; 
+        };        
+        console.log(classObj)
+
+        //pass objects to update function
+        updateFunction(studentObj, classObj)
        
     }
 
