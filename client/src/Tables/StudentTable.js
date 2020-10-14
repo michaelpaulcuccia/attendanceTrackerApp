@@ -125,7 +125,6 @@ const StudentTable = ({ showStudent, setShowStudent }) => {
             <div>
                 {showAddModal &&
                     <AddStudentModal
-                    showAddModal={showAddModal}
                     closeAddModal={closeAddModal}
                     setStudents={setStudents}
                     showAddModal={showAddModal}

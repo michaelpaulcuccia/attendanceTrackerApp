@@ -57,7 +57,7 @@ const AddStudentModal = props => {
                 closeEditModal={props.closeAddModal}
             >
                 <Modal.Header>
-                    <Modal.Title>Update/Delete Student</Modal.Title>
+                    <Modal.Title>Add Student</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <form onSubmit={handleSubmit(onSubmit)}>

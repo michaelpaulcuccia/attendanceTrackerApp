@@ -4,13 +4,15 @@ import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-alpine-dark.css";
 import EditClassModal from '../Modals/EditClassModal';
-import  '../Static/ButtonStyle.css'
+import AddClassModal from '../Modals/AddClassModal';
+import '../Static/ButtonStyle.css'
 
 const ClassTable = ({ showClass, setShowClass }) => {
 
     const [classes, setClasses] = useState([]);
     const [showEditModal, setShowEditModal] = useState(false);
     const [editModalData, setEditModalData] = useState({});
+    const [showAddModal, setShowAddModal] = useState(false);
 
     useEffect(() => {
         const getData = async () => {
@@ -26,16 +28,29 @@ const ClassTable = ({ showClass, setShowClass }) => {
         getData();
     }, []);
 
+    //open and close table
     const handleShowHide = () => {
         setShowClass(!showClass);
     };
 
-     //closes edit modal
-     const closeEditModal = useCallback(
+    //opens and closes add modal
+    const handleShowHideAdd = () => {
+        setShowAddModal(!showAddModal);
+    }
+
+    //closes edit modal
+    const closeEditModal = useCallback(
         (event) => {
             event.preventDefault()
             setShowEditModal(showEditModal)
-        },[]);
+        }, []);
+
+    //closes add modal
+    const closeAddModal = useCallback(
+        (event) => {
+            event.preventDefault()
+            setShowAddModal(showAddModal)
+        }, []);
 
     const columnDefs = [
         {
@@ -71,6 +86,11 @@ const ClassTable = ({ showClass, setShowClass }) => {
                 onClick={handleShowHide}>
                 Close
             </Button>
+            <Button variant='outline-dark'
+                style={{ marginLeft: '5px', marginBottom: '3px' }}
+                onClick={handleShowHideAdd}>
+                Add Class
+                </Button>
             <AgGridReact
                 columnDefs={columnDefs}
                 rowData={classes}>
@@ -86,7 +106,18 @@ const ClassTable = ({ showClass, setShowClass }) => {
                 />
             </div>
 
-        
+            <div>
+                {showAddModal &&
+                    <AddClassModal
+                        closeAddModal={closeAddModal}
+                        setClasses={setClasses}
+                        showAddModal={showAddModal}
+                        setShowAddModal={setShowAddModal}
+                    />
+                }
+            </div>
+
+
         </div>
     )
 }
