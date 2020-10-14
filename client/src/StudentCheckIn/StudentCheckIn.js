@@ -29,8 +29,7 @@ const StudentCheckIn = () => {
     const updateFunction = (sobj, cobj) => {
 
         //Get Class Type
-        let classType = cobj.trainingtype
-        console.log(classType);
+        let classType = cobj.trainingtype  
         
         //Attendance Array
         let attendanceArray = [];
@@ -39,16 +38,25 @@ const StudentCheckIn = () => {
         let studentNoGi = {totals: sobj.classes.nogi, type: 'nogi'};
         let studentOpenMat= {totals: sobj.classes.openmat, type: 'openmat'};
         let studentKickboxing = {totals: sobj.classes.kickboxing, type: 'kickboxing'};
-        attendanceArray.push(studentAttendance, studentGi, studentNoGi, studentOpenMat, studentKickboxing)
+        attendanceArray.push(studentAttendance, studentGi, studentNoGi, studentOpenMat, studentKickboxing);
+
+        //new object
+        let newStudentObj = {}
 
         //Get Totals of Class Type
         let totalClassType;
         //Update Total of Class Type by 1
         let newTotalClassType;
-                for (let i = 0; i < attendanceArray.length; i++){
+        for (let i = 0; i < attendanceArray.length; i++){
             if(classType === attendanceArray[i].type){
+                //update totals of class type
                 totalClassType = attendanceArray[i].totals;
-                newTotalClassType = totalClassType + 1
+                newTotalClassType = totalClassType + 1;
+                                
+                //TO DO update newStudentObj  - type: +1
+                //newStudentObj.classes.attendanceArray[i].type = newTotalClassType;
+
+                //TO DO remove the update class from the array of classes
                 break;
             }
         };
@@ -57,14 +65,15 @@ const StudentCheckIn = () => {
         let totalAttendance = studentAttendance.totals;
         //Update Total Attendance by 1
         let newTotalAttendance = totalAttendance + 1;
-
-        console.log(totalClassType)
-        console.log(newTotalClassType)
-        console.log(totalAttendance)
-        console.log(newTotalAttendance)
-     
+        //Update newStudentObj
+        newStudentObj.classes.attended = newTotalAttendance;
+        
+        console.log(totalClassType);
+        console.log(newTotalClassType);
+        console.log(totalAttendance);
+        console.log(newTotalAttendance);
+        console.log(newStudentObj);       
             
-
     };
 
     
