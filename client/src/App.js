@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import StudentTable from './Tables/StudentTable';
 import ClassTable from './Tables/ClassTable';
-//import EditClassModal from './Modals/EditClassModal';
+import DropDown from './Dropdown/Dropdown';
 
 const App = () => {
 
@@ -24,17 +24,19 @@ const App = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
-            <Nav.Link href="#home">Home</Nav.Link>
+            {/* <Nav.Link href="#home">Home</Nav.Link> */}
             <NavDropdown title="Select" id="basic-nav-dropdown">
               <NavDropdown.Item onSelect={handleShowStudent}>Students</NavDropdown.Item>
               <NavDropdown.Item onSelect={handleShowClass}>Classes</NavDropdown.Item>
-              <NavDropdown.Divider />
-              <NavDropdown.Item href="home">Home</NavDropdown.Item>
+              {/* <NavDropdown.Divider />
+              <NavDropdown.Item href="home">Home</NavDropdown.Item> */}
             </NavDropdown>
           </Nav>
 
         </Navbar.Collapse>
       </Navbar>
+
+      <DropDown/>
 
       {showStudent && 
       <StudentTable 
@@ -48,7 +50,6 @@ const App = () => {
         setShowClass={setShowClass}
       />}
 
-      {/* <EditClassModal/> */}
     </div>
   );
 }

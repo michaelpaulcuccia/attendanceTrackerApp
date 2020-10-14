@@ -1,0 +1,10 @@
+body {
+    background: url("./professor.png");
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.drop_down {
+    margin-left: 45%;
+    margin-top: 25%;
+}
