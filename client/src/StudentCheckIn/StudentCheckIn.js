@@ -27,28 +27,43 @@ const StudentCheckIn = () => {
     }, []);
 
     const updateFunction = (sobj, cobj) => {
+
+        //Get Class Type
         let classType = cobj.trainingtype
         console.log(classType);
+        
+        //Attendance Array
+        let attendanceArray = [];
+        let studentAttendance = {totals: sobj.classes.attended, type: 'attended'};
+        let studentGi = {totals: sobj.classes.gi, type: 'gi'};
+        let studentNoGi = {totals: sobj.classes.nogi, type: 'nogi'};
+        let studentOpenMat= {totals: sobj.classes.openmat, type: 'openmat'};
+        let studentKickboxing = {totals: sobj.classes.kickboxing, type: 'kickboxing'};
+        attendanceArray.push(studentAttendance, studentGi, studentNoGi, studentOpenMat, studentKickboxing)
 
-
-        /*
-        //console.log(sobj)
-        //console.log(sobj.classes.attended)
-
-        let classesObj = sobj.classes;
-        console.log(classesObj)
-
-        const studentsClassesKeys = Object.keys(classesObj);
-        //const studentsClassesValues = Object.values(classesObj);
-
-        for (let i = 0; i < studentsClassesKeys.length; i++){
-            //console.log(studentsClassesKeys[i]);
-            if(classType === studentsClassesKeys[i]){
-                console.log('match');
+        //Get Totals of Class Type
+        let totalClassType;
+        //Update Total of Class Type by 1
+        let newTotalClassType;
+                for (let i = 0; i < attendanceArray.length; i++){
+            if(classType === attendanceArray[i].type){
+                totalClassType = attendanceArray[i].totals;
+                newTotalClassType = totalClassType + 1
                 break;
             }
         };
-        */        
+        
+        //Get Totals of Attendance 
+        let totalAttendance = studentAttendance.totals;
+        //Update Total Attendance by 1
+        let newTotalAttendance = totalAttendance + 1;
+
+        console.log(totalClassType)
+        console.log(newTotalClassType)
+        console.log(totalAttendance)
+        console.log(newTotalAttendance)
+     
+            
 
     };
 
