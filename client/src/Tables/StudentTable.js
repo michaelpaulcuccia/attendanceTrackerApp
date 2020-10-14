@@ -38,7 +38,7 @@ const StudentTable = ({ showStudent, setShowStudent }) => {
     //opens and closes add modal
     const handleShowHideAdd = () => {
         setShowAddModal(!showAddModal);
-    }
+    };
 
      //closes edit modal
      const closeEditModal = useCallback(
