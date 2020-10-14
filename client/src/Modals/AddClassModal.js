@@ -2,6 +2,7 @@ import React from 'react';
 import { useForm } from "react-hook-form";
 import { Modal, Button } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import '../Static/GenericForm.css';
 import axios from 'axios';
 
 const AddClassModal = props => {
@@ -59,25 +60,44 @@ const AddClassModal = props => {
                     <form
                         onSubmit={handleSubmit(onSubmit)}
                     >
-                        <p className='text_field'>Title:
-                    <input type='text' name='title' ref={register} className='input_field' />
+                        <p className='field_text'>Title:
+                    <input type='text'
+                                name='title'
+                                ref={register}
+                                className='active_text_space'
+                            />
                         </p>
-                        <p className='text_field'>Start Time:
-                    <input type='text' name='starttime' ref={register} className='input_field' />
+
+                        <p className='field_text'>Start Time:
+                    <input type='text'
+                                name='starttime'
+                                ref={register}
+                                className='active_text_space'
+                            />
                         </p>
-                        <p className='text_field'>End Time:
-                    <input type='text' name='endtime' ref={register} className='input_field' />
+
+                        <p className='field_text'>End Time:
+                    <input type='text'
+                                name='endtime'
+                                ref={register}
+                                className='active_text_space'
+                            />
                         </p>
-                        <p className='text_field'>Days:
-                    <input type='text' name='days' ref={register} className='input_field' />
+
+                        <p className='field_text'>Days:
+                    <input type='text'
+                                name='days'
+                                ref={register}
+                                className='active_text_space'
+                            />
                         </p>
-                        <p>Training Type:
+
+                        <p className='field_text'>Training Type:
                         <select
                                 type='text'
                                 name="trainingtype"
                                 ref={register}
-                                className='input'
-                                style={{ marginLeft: '5px' }}
+                                className='active_text_space'
                             >
                                 <option disabled selected value>-- select an option -- </option>
                                 <option value="gi">Gi</option>
@@ -86,9 +106,10 @@ const AddClassModal = props => {
                                 <option value="kickboxing">Kickboxing</option>
                             </select>
                         </p>
+
                         <div>
                             <Button variant='primary' type='submit'>Submit</Button>
-                            <Button variant='secondary' style={{ marginLeft: '5px' }} onClick={(event) => props.closeAddModal(event)}>Cancel</Button>
+                            <Button variant='secondary' className='spacer' onClick={(event) => props.closeAddModal(event)}>Cancel</Button>
                         </div>
                     </form>
                 </Modal.Body>

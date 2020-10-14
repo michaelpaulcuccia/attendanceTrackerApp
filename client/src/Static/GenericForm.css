@@ -1,0 +1,16 @@
+.active_text {
+   background: #C8CACC;
+}
+
+.field_text{
+    font-weight: bold;
+}
+
+.spacer {
+    margin-left: 5px;
+}
+
+.active_text_space {
+    background: #C8CACC;
+    margin-left: 5px;
+}

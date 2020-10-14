@@ -2,7 +2,7 @@ import React from 'react';
 import { useForm } from "react-hook-form";
 import { Modal, Button } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../Static/AddStudentModalStyle.css';
+import '../Static/GenericForm.css';
 import axios from 'axios';
 
 const AddStudentModal = props => {
@@ -61,30 +61,58 @@ const AddStudentModal = props => {
                 </Modal.Header>
                 <Modal.Body>
                     <form onSubmit={handleSubmit(onSubmit)}>
-                        <p className='text_field'>First Name:
-                    <input type='text' name='firstname' ref={register} className='input_field' />
+                        <p className='field_text'>First Name:
+                    <input type='text'
+                                name='firstname'
+                                ref={register}
+                                className='active_text_space' 
+                                />
                         </p>
-                        <p className='text_field'>Last Name:
-                    <input type='text' name='lastname' ref={register} className='input_field' />
+                        <p className='field_text'>Last Name:
+                    <input type='text'
+                                name='lastname'
+                                ref={register}
+                                className='active_text_space' 
+                                />
                         </p>
-                        <p className='text_field'>Phone Number:
-                    <input type='text' name='phonenumber' ref={register} className='input_field' />
+                        <p className='field_text'>Phone Number:
+                    <input type='text'
+                                name='phonenumber'
+                                ref={register}
+                                className='active_text_space' 
+                                />
                         </p>
-                        <p className='text_field'>Email:
-                    <input type='text' name='email' ref={register} className='input_field' />
+                        <p className='field_text'>Email:
+                    <input type='text'
+                                name='email'
+                                ref={register}
+                                className='active_text_space' 
+                                />
                         </p>
-                        <p className='text_field'>Belt:
-                    <input type='text' name='belt' ref={register} className='input_field' />
+                        <p className='field_text'>Belt:
+                    <input type='text'
+                                name='belt'
+                                ref={register}
+                                className='active_text_space' 
+                                />
                         </p>
-                        <p className='text_field'>Stripes:
-                    <input type='text' name='stripes' ref={register} className='input_field' />
+                        <p className='field_text'>Stripes:
+                    <input type='text'
+                                name='stripes'
+                                ref={register}
+                                className='active_text_space' 
+                                />
                         </p>
-                        <p className='text_field'>Date of Last Promotion
-                    <input type='text' name='dateoflastpromotion' ref={register} className='input_field' />
+                        <p className='field_text'>Date of Last Promotion
+                    <input type='text'
+                                name='dateoflastpromotion'
+                                ref={register}
+                                className='active_text_space' 
+                                />
                         </p>
                         <div>
                             <Button variant='primary' type='submit'>Submit</Button>
-                            <Button variant='secondary' style={{ marginLeft: '5px' }} onClick={(event) => props.closeAddModal(event)}>Cancel</Button>
+                            <Button variant='secondary' className='spacer' onClick={(event) => props.closeAddModal(event)}>Cancel</Button>
                         </div>
                     </form>
                 </Modal.Body>

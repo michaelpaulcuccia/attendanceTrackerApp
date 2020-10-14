@@ -2,6 +2,7 @@ import React from 'react'
 import { Modal, Button } from "react-bootstrap";
 import { useForm } from "react-hook-form";
 import 'bootstrap/dist/css/bootstrap.min.css';
+import '../Static/GenericForm.css';
 import axios from 'axios';
 
 const EditClassModal = props => {
@@ -78,61 +79,56 @@ const EditClassModal = props => {
                         onSubmit={handleSubmit(onSubmit)}
                     >
 
-                        <p>Class Title:
+                        <p className='field_text'>Class Title:
                             <input
                                 type='text'
                                 placeholder={props.editModalData.title}
                                 name='title'
                                 ref={register}
-                                className='active_text'
-                                style={{ marginLeft: '5px' }}
+                                className='active_text_space'
                             >
                             </input>
                         </p>
 
-                        <p>Start Time:
+                        <p className='field_text'>Start Time:
                             <input
                                 type='text'
                                 placeholder={props.editModalData.starttime}
                                 name='starttime'
                                 ref={register}
-                                className='active_text'
-                                style={{ marginLeft: '5px' }}
+                                className='active_text_space'
                             >
                             </input>
                         </p>
 
-                        <p>End Time:
+                        <p className='field_text'>End Time:
                             <input
                                 type='text'
                                 placeholder={props.editModalData.endtime}
                                 name='endtime'
                                 ref={register}
-                                className='active_text'
-                                style={{ marginLeft: '5px' }}
+                                className='active_text_space'
                             >
                             </input>
                         </p>
 
-                        <p>Days:
+                        <p className='field_text'>Days:
                             <input
                                 type='text'
                                 placeholder={props.editModalData.days}
                                 name='days'
                                 ref={register}
-                                className='active_text'
-                                style={{ marginLeft: '5px' }}
+                                className='active_text_space'
                             >
                             </input>
                         </p>
 
-                        <p>Training Type:
+                        <p className='field_text'>Training Type:
                         <select
                                 type='text'
                                 name="trainingtype"
                                 ref={register}
-                                className='input'
-                                style={{ marginLeft: '5px' }}
+                                className='active_text_space'
                             >
                                 <option disabled selected value>-- select an option -- </option>
                                 <option value="gi">Gi</option>
@@ -144,7 +140,7 @@ const EditClassModal = props => {
 
                         <br></br>
                         <Button type='submit' variant="primary">Save Changes</Button>
-                        <Button variant="seconday" onClick={(event) => props.closeEditModal(event)}>Cancel</Button>
+                        <Button className='spacer' variant='secondary' onClick={(event) => props.closeEditModal(event)}>Cancel</Button>
                     </form>
                 </Modal.Body>
             </Modal>
