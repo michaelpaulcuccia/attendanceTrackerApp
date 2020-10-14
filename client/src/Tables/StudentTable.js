@@ -95,12 +95,12 @@ const StudentTable = ({ showStudent, setShowStudent }) => {
 
             <div className="ag-theme-alpine-dark" style={{ height: 400, width: '80%', margin: 'auto', marginTop: '20px' }}>
                 <Button variant='dark'
-                    style={{marginBottom: '3px'}}
+                    style={{marginBottom: '3px', border: 'none'}}
                     onClick={handleShowHideTable}>
                     Close
                 </Button>
-                <Button variant='outline-dark'
-                    style={{marginLeft: '5px', marginBottom: '3px'}}
+                <Button 
+                    style={{marginLeft: '5px', marginBottom: '3px', backgroundColor: '#7F8183', border: 'none'}}
                     onClick={handleShowHideAdd}>
                     Add Student
                 </Button>

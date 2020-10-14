@@ -3,18 +3,24 @@ import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import StudentTable from './Tables/StudentTable';
 import ClassTable from './Tables/ClassTable';
 import DropDown from './Dropdown/Dropdown';
+import './Static/AppStyle.css';
 
 const App = () => {
 
   const [showStudent, setShowStudent] = useState(false);
   const [showClass, setShowClass] = useState(false);
-
+  const [showDropDown, setShowDropDown] = useState(false);
+  
   const handleShowStudent = () => {
-    setShowStudent(!showStudent)
+    setShowStudent(!showStudent);
   };
 
   const handleShowClass = () => {
-    setShowClass(!showClass)
+    setShowClass(!showClass);
+  };
+
+  const handleShowDropDown = () => {
+    setShowDropDown(!showDropDown)
   };
 
   return (
@@ -24,20 +30,21 @@ const App = () => {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="mr-auto">
-            {/* <Nav.Link href="#home">Home</Nav.Link> */}
             <NavDropdown title="Select" id="basic-nav-dropdown">
-              <NavDropdown.Item onSelect={handleShowStudent}>Students</NavDropdown.Item>
-              <NavDropdown.Item onSelect={handleShowClass}>Classes</NavDropdown.Item>
-              {/* <NavDropdown.Divider />
-              <NavDropdown.Item href="home">Home</NavDropdown.Item> */}
+              <NavDropdown.Item onSelect={handleShowDropDown}>Student Check-In</NavDropdown.Item>
+              <NavDropdown.Divider />             
+              <NavDropdown.Item onSelect={handleShowStudent}>Students - Admin</NavDropdown.Item>
+              <NavDropdown.Item onSelect={handleShowClass}>Classes - Admin</NavDropdown.Item>
             </NavDropdown>
           </Nav>
 
         </Navbar.Collapse>
       </Navbar>
 
+      {showDropDown &&
       <DropDown/>
-
+      }
+     
       {showStudent && 
       <StudentTable 
         showStudent={showStudent}
