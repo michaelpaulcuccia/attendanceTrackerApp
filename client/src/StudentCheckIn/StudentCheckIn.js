@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../Static/DropdownStyle.css';
 import moment from 'moment';
+import axios from 'axios';
 
 const StudentCheckIn = () => {
 
@@ -26,56 +27,60 @@ const StudentCheckIn = () => {
         getData();
     }, []);
 
+ 
+    //New Object
+    let updatedStudent;
     const updateFunction = (sobj, cobj) => {
 
+        //start with adding an empty classes object
+        updatedStudent = { classes: {}};
+        
         //Get Class Type
-        let classType = cobj.trainingtype  
+        let classType = cobj.trainingtype;
         
-        //Attendance Array
-        let attendanceArray = [];
-        let studentAttendance = {totals: sobj.classes.attended, type: 'attended'};
-        let studentGi = {totals: sobj.classes.gi, type: 'gi'};
-        let studentNoGi = {totals: sobj.classes.nogi, type: 'nogi'};
-        let studentOpenMat= {totals: sobj.classes.openmat, type: 'openmat'};
-        let studentKickboxing = {totals: sobj.classes.kickboxing, type: 'kickboxing'};
-        attendanceArray.push(studentAttendance, studentGi, studentNoGi, studentOpenMat, studentKickboxing);
-
-        //new object
-        let newStudentObj = {}
-
-        //Get Totals of Class Type
-        let totalClassType;
-        //Update Total of Class Type by 1
-        let newTotalClassType;
-        for (let i = 0; i < attendanceArray.length; i++){
-            if(classType === attendanceArray[i].type){
-                //update totals of class type
-                totalClassType = attendanceArray[i].totals;
-                newTotalClassType = totalClassType + 1;
-                                
-                //TO DO update newStudentObj  - type: +1
-                //newStudentObj.classes.attendanceArray[i].type = newTotalClassType;
-
-                //TO DO remove the update class from the array of classes
-                break;
-            }
+        //Filter Out Current Class
+        let classes = ['gi', 'nogi', 'openmat', 'kickboxing', 'attended'];
+        let filteredClasses = classes.filter(type => type !== classType);
+        
+        for (let i = 0; i < filteredClasses.length; i++){
+            //Add Unused Classes to New Object
+            updatedStudent.classes[filteredClasses[i]] = sobj.classes[filteredClasses[i]];
         };
+
+        //Update Curernt Class in New Object and add 1 Current Class Total
+        updatedStudent.classes[classType] = sobj.classes[classType] + 1; 
+
+        //Get Attendance Totals
+        let totalAttendance = sobj.classes.attended;
+        //Update New Object's Attendance Totals by 1
+        updatedStudent.classes.attended = totalAttendance + 1; 
+
+        //Update Remaining Key-Values
+        updatedStudent.firstname = sobj.firstname;
+        updatedStudent.lastname = sobj.lastname;
+        updatedStudent.email = sobj.email;
+        updatedStudent.phonenumber = sobj.phonenumber;
+        updatedStudent.dateoflastpromotion = sobj.dateoflastpromotion;
+        updatedStudent.belt = sobj.belt;
+        updatedStudent.stripes = sobj.stripes;
+        updatedStudent._id = sobj._id
         
-        //Get Totals of Attendance 
-        let totalAttendance = studentAttendance.totals;
-        //Update Total Attendance by 1
-        let newTotalAttendance = totalAttendance + 1;
-        //Update newStudentObj
-        newStudentObj.classes.attended = newTotalAttendance;
-        
-        console.log(totalClassType);
-        console.log(newTotalClassType);
-        console.log(totalAttendance);
-        console.log(newTotalAttendance);
-        console.log(newStudentObj);       
-            
+        return updatedStudent
     };
 
+    const putRequest = (obj) => {
+
+        let id = obj._id
+        
+        axios.put(`http://localhost:5000/students/update/${id}`, obj)
+        .then(response => {
+            console.log(response)
+        })
+        .catch(error => {
+            console.log(error)
+        })
+
+    };
     
     const selectHandler = (e) => {
       
@@ -89,23 +94,23 @@ const StudentCheckIn = () => {
                 break;
             };
         };
-        console.log(studentObj)
-        
-        //See if a class is happening 
-        //Get Class using time-check
+                
+        //See if a class is happening && Get Class using time-check
         let classObj;
         for (let i = 0; i < classes.length; i++){
-            if(moment().isBetween(moment(classes[i].starttime, "h:mm a").subtract(100, 'm'), moment(classes[i].starttime, "h:mm a").add(100, 'm'))){
+            if(moment().isBetween(moment(classes[i].starttime, "h:mm a").subtract(120, 'm'), moment(classes[i].starttime, "h:mm a").add(120, 'm'))){
                 console.log('There is a class and you will be checked in.')
                 classObj = classes[i]
                 break;
                 //run function to update student's attendance
             }; 
         };        
-        console.log(classObj)
-
-        //pass objects to update function
+        
+        //pass objects to update function - creates updatedStudent
         updateFunction(studentObj, classObj)
+
+        //pass updatedStudent to put request
+        putRequest(updatedStudent);
        
     }
 
