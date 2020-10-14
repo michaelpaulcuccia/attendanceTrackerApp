@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import StudentTable from './Tables/StudentTable';
 import ClassTable from './Tables/ClassTable';
-import DropDown from './Dropdown/Dropdown';
+import StudentCheckIn from './StudentCheckIn/StudentCheckIn';
 import './Static/AppStyle.css';
 
 const App = () => {
@@ -42,7 +42,7 @@ const App = () => {
       </Navbar>
 
       {showDropDown &&
-      <DropDown/>
+      <StudentCheckIn/>
       }
      
       {showStudent && 
