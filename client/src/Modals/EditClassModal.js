@@ -7,10 +7,10 @@ import axios from 'axios';
 
 const EditClassModal = props => {
 
-
     const { register, handleSubmit } = useForm();
-    console.log(props.editModalData)
 
+    //console.log(props.editModalData)
+    
     const getData = async () => {
         try {
             const response = await fetch("http://localhost:5000/classes");
@@ -23,20 +23,25 @@ const EditClassModal = props => {
     }
 
     const onSubmit = data => {
-        console.log(data)
 
-        Object.keys(data).forEach(key => {
-            if (data[key] === '' || true) {
-                data[key] = props.editModalData[key]
-            }
-        });
-        /*
+        //console.log(data)
+
         if (data.title === '') {
-           data.title = editModalData.title;
-       }
-       //use `|| true` in the event that a class is not chosen in dropdown
-       */
-        
+            data.title = props.editModalData.title;
+        }
+        if (data.starttime === '') {
+            data.starttime = props.editModalData.starttime;
+        }
+        if (data.endtime === '') {
+            data.endtime = props.editModalData.endtime;
+        }
+        if (data.days === '') {
+            data.days = props.editModalData.days;
+        }
+        //use `|| true` in the event that a class is not chosen in dropdown
+        if (data.trainingtype === '' || true) {
+            data.trainingtype = props.editModalData.trainingtype;
+        }
 
         let id = props.editModalData._id;
 
@@ -61,6 +66,36 @@ const EditClassModal = props => {
             });
 
         window.alert(`${updateObj.title} has been successfully updated!`);
+
+    };
+
+     //delete a class
+     const handleDelete = () => {
+        
+        let id = props.editModalData._id;
+        
+        let deleteObj = {
+            _id: id,
+            title: props.editModalData.title,
+            starttime: props.editModalData.starttime,
+            endtime: props.editModalData.endtime,
+            days: props.editModalData.days,
+            trainingtype: props.editModalData.trainingtype,
+        };
+
+        axios.delete(`http://localhost:5000/classes/${id}`, deleteObj)
+            .then(response => {
+                console.log(response)
+                //refreshes table with new data
+                getData()
+                //closes modal
+                props.setShowEditModal(!props.showEditModal);
+            })
+            .catch(error => {
+                console.log(error)
+            })
+
+        window.alert(`Deletion of ${deleteObj.title} complete.`);
 
     };
 
@@ -143,6 +178,9 @@ const EditClassModal = props => {
                         <Button className='spacer' variant='secondary' onClick={(event) => props.closeEditModal(event)}>Cancel</Button>
                     </form>
                 </Modal.Body>
+                <Modal.Footer>
+                    <Button variant='danger' onClick={handleDelete}>Delete Class</Button>
+                </Modal.Footer>
             </Modal>
 
         </div>

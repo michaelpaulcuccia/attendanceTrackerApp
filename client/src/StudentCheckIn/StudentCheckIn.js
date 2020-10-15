@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import '../Static/DropdownStyle.css';
+import '../Static/StudentCheckInStyle.css';
 import moment from 'moment';
 import axios from 'axios';
 
@@ -10,10 +10,12 @@ const StudentCheckIn = () => {
 
     const getData = async () => {
         try {
+            //students
             const response1 = await fetch("http://localhost:5000/students");
             const data1 = await response1.json();
             //console.log(data);
             setStudents(data1);
+            //classes
             const response2 = await fetch("http://localhost:5000/classes");
             const data2 = await response2.json();
             //console.log(data);
@@ -37,7 +39,7 @@ const StudentCheckIn = () => {
         
         //Get Class Type
         let classType = cobj.trainingtype;
-        
+
         //Filter Out Current Class
         let classes = ['gi', 'nogi', 'openmat', 'kickboxing', 'attended'];
         let filteredClasses = classes.filter(type => type !== classType);
@@ -98,14 +100,15 @@ const StudentCheckIn = () => {
         //See if a class is happening && Get Class using time-check
         let classObj;
         for (let i = 0; i < classes.length; i++){
-            if(moment().isBetween(moment(classes[i].starttime, "h:mm a").subtract(120, 'm'), moment(classes[i].starttime, "h:mm a").add(120, 'm'))){
+            if(moment().isBetween(moment(classes[i].starttime, "h:mm a").subtract(200, 'm'), moment(classes[i].starttime, "h:mm a").add(200, 'm'))){
                 console.log('There is a class and you will be checked in.')
-                classObj = classes[i]
+                //console.log(classes[i]);
+                classObj = classes[i];
                 break;
-                //run function to update student's attendance
             }; 
-        };        
-        
+        };      
+        //console.log(classObj.trainingtype);
+                
         //pass objects to update function - creates updatedStudent
         updateFunction(studentObj, classObj)
 

@@ -76,7 +76,21 @@ const ClassTable = ({ showClass, setShowClass }) => {
         { headerName: "Class Title", field: "title", sortable: true, filter: true },
         { headerName: "Start", field: "starttime", sortable: true, filter: true },
         { headerName: "End", field: "endtime", sortable: true, filter: true },
-        { headerName: "Days", field: "days.length", sortable: true, filter: true },
+        { headerName: "Days",  
+
+            cellRenderer: (params) => {
+                //Get Data Array, Convert to String
+                let daysArray = params.data.days;
+                let convertedDaysArray = daysArray.toString();
+                
+                //HTML
+                var eDiv = document.createElement('div');
+                eDiv.innerHTML = `<span><p>${convertedDaysArray}</p></span>`;
+
+                return eDiv;
+            }
+    
+        },
         { headerName: "Type", field: "trainingtype", sortable: true, filter: true },
     ];
 

@@ -10,7 +10,7 @@ const ClassSchema = new Schema({
     trainingtype: {  
         type: String,
         required: true
-    }, // Gi, NoGi, Kickboxing, Open-Mat
+    }, // Gi, NoGi, Kickboxing, Open-Mat, Private
     days: [
         { type: String, required: true } // 'Sunday' moment.format('dddd')
     ],
