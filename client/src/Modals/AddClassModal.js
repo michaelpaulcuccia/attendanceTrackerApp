@@ -11,7 +11,7 @@ const AddClassModal = props => {
 
     const getData = async () => {
         try {
-            const response = await fetch("http://localhost:5000/classes");
+            const response = await fetch("/classes");
             const data = await response.json();
             //console.log(data);
             props.setClasses(data);
@@ -30,7 +30,7 @@ const AddClassModal = props => {
             trainingtype: data.trainingtype
         };
 
-        axios.post('http://localhost:5000/classes', newClass)
+        axios.post('/classes', newClass)
             .then(response => {
                 console.log(response)
                 //refreshes table with new data

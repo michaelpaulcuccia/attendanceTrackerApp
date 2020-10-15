@@ -48,34 +48,4 @@ router.route('/update/:id').put((req, res, next) => {
     });
 });
 
-/*
-router.post('/update/:id',(req, res) => {
-    let update;
-    Classes.findByIdAndUpdate(req.params.id, update)
-        .then(update => {
-            update.title = req.body.title;
-            update.trainingtype = req.body.trainingtype;
-            update.days = req.body.days;
-            update.starttime = req.body.starttime;
-            update.endtime = req.body.endtime;
-           
-            update.save()
-                .then(() => res.json({ classUpdated: true}))
-                .catch(() => res.status(400).json({ classUpdated: false}))
-        })
- 
-        .catch(err => res.status(400).json('Error: ' + err));
-});
-*/
-
-/*
-{
-    "title": "updatedTest1",
-    "trainingtype": "updatedtrainingtype",
-    "days": ["Friday", "Saturday"],
-    "starttime": "updatedstarttime",
-    "endtime": "updatedendtime"
-}
-*/
-
 module.exports = router;

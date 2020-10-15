@@ -17,7 +17,7 @@ const ClassTable = ({ showClass, setShowClass }) => {
 
     const getData = async () => {
         try {
-            const response = await fetch("http://localhost:5000/classes");
+            const response = await fetch("/classes");
             const data = await response.json();
             //console.log(data);
             setClasses(data);

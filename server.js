@@ -2,6 +2,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const bodyParser = require("body-Parser");
 const cors = require("cors");
+const path = require(path);
 require('dotenv').config();
 
 const app = express();
@@ -27,6 +28,15 @@ const studentsRoute = require('./routes/StudentsRoutes');
 app.use('/classes', classesRoute); //- the route ending with /classes will use the classesRoute variable
 app.use('/students', studentsRoute); //- the route ending with /students will use the studentsRoute variable
 
+//Serve Static Assets if in production
+if (process.env.NODE_ENV === 'production') {
+    //set a static folder
+    app.use(express.static('client/build'));
+    //use routes
+    app.get('*', (req, res) => {
+        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+    });
+};
 
 const PORT = process.env.PORT || 5000;
 

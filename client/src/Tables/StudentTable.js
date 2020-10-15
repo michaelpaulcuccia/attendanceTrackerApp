@@ -17,7 +17,7 @@ const StudentTable = ({ showStudent, setShowStudent }) => {
 
     const getData = async () => {
         try {
-            const response = await fetch("http://localhost:5000/students");
+            const response = await fetch("/students");
             const data = await response.json();
             //console.log(data);
             setStudents(data);

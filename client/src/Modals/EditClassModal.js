@@ -13,7 +13,7 @@ const EditClassModal = props => {
 
     const getData = async () => {
         try {
-            const response = await fetch("http://localhost:5000/classes");
+            const response = await fetch("/classes");
             const data = await response.json();
             //console.log(data);
             props.setClasses(data);
@@ -53,7 +53,7 @@ const EditClassModal = props => {
             trainingtype: data.trainingtype
         };
 
-        axios.put(`http://localhost:5000/classes/update/${id}`, updateObj)
+        axios.put(`/classes/update/${id}`, updateObj)
             .then(response => {
                 console.log(response)
                 //refreshes table with new data
@@ -83,7 +83,7 @@ const EditClassModal = props => {
             trainingtype: props.editModalData.trainingtype,
         };
 
-        axios.delete(`http://localhost:5000/classes/${id}`, deleteObj)
+        axios.delete(`/classes/${id}`, deleteObj)
             .then(response => {
                 console.log(response)
                 //refreshes table with new data

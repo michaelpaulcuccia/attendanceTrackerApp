@@ -11,7 +11,7 @@ const AddStudentModal = props => {
 
     const getData = async () => {
         try {
-            const response = await fetch("http://localhost:5000/students");
+            const response = await fetch("/students");
             const data = await response.json();
             //console.log(data);
             props.setStudents(data);
@@ -32,7 +32,7 @@ const AddStudentModal = props => {
             dateoflastpromotion: data.dateoflastpromotion,
         };
 
-        axios.post('http://localhost:5000/students', newStudent)
+        axios.post('/students', newStudent)
             .then(response => {
                 console.log(response)
                 //refreshes table with new data

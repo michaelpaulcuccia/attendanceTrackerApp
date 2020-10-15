@@ -12,13 +12,13 @@ const StudentCheckIn = () => {
         try {
 
             //students
-            const response1 = await fetch("http://localhost:5000/students");
+            const response1 = await fetch("/students");
             const data1 = await response1.json();
             //console.log(data);
             setStudents(data1);
 
             //classes
-            const response2 = await fetch("http://localhost:5000/classes");
+            const response2 = await fetch("/classes");
             const data2 = await response2.json();
             //console.log(data);
             setClasses(data2);
@@ -77,7 +77,7 @@ const StudentCheckIn = () => {
 
         let id = obj._id
 
-        axios.put(`http://localhost:5000/students/update/${id}`, obj)
+        axios.put(`/students/update/${id}`, obj)
             .then(response => {
                 console.log(response)
             })

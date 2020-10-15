@@ -11,7 +11,7 @@ const StudentModal = props => {
 
     const getData = async () => {
         try {
-            const response = await fetch("http://localhost:5000/students");
+            const response = await fetch("/students");
             const data = await response.json();
             //console.log(data);
             props.setStudents(data);
@@ -46,7 +46,7 @@ const StudentModal = props => {
             dateoflastpromotion: data.dateoflastpromotion
         };
 
-        axios.put(`http://localhost:5000/students/update/${id}`, updateObj)
+        axios.put(`/students/update/${id}`, updateObj)
             .then(response => {
                 console.log(response)
                 //refreshes table with new data
@@ -78,7 +78,7 @@ const StudentModal = props => {
             dateoflastpromotion: props.editModalData.dateoflastpromotion
         };
 
-        axios.delete(`http://localhost:5000/students/${id}`, deleteObj)
+        axios.delete(`/students/${id}`, deleteObj)
             .then(response => {
                 console.log(response)
                 //refreshes table with new data
