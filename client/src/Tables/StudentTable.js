@@ -5,7 +5,7 @@ import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-alpine-dark.css";
 import EditStudentModal from '../Modals/EditStudentModal';
 import AddStudentModal from '../Modals/AddStudentModal';
-import '../Static/ButtonStyle.css'
+import '../StylesAndImages/ButtonStyle.css'
 
 
 const StudentTable = ({ showStudent, setShowStudent }) => {

@@ -5,7 +5,7 @@ import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-alpine-dark.css";
 import EditClassModal from '../Modals/EditClassModal';
 import AddClassModal from '../Modals/AddClassModal';
-import '../Static/ButtonStyle.css'
+import '../StylesAndImages/ButtonStyle.css'
 
 const ClassTable = ({ showClass, setShowClass }) => {
 

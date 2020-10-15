@@ -1,10 +1,5 @@
 # attendanceTrackerApp
+version: 1.0.0
+description: MERN Application to track student attendance. 
 
-> TO DO's 🛠:
-
-    - ClassTable.js - 'Days' column shows array index not number actual number of classes
-
-    - `Edit ${Student} && ${Classes} Modal.js` - Form Validation 
-
-        - https://www.w3schools.com/js/js_validation.asp
-        - https://developer.mozilla.org/en-US/docs/Learn/Forms/Form_validation
+Students simply choose their name on a dropdown menu and nothing more. A function will capture the current time during check-in and compare to the class schedule, selecting a class that occurs that day, within 15 minutes before, or 20 minutes after, that class's designated start time. Function will update students overall attendance, as well as attendance that specific type of class. Has admin tables for CRUD (create, read, update, delete) operations in classes and students data collections. 

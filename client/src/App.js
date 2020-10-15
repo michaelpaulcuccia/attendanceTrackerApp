@@ -3,7 +3,7 @@ import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import StudentTable from './Tables/StudentTable';
 import ClassTable from './Tables/ClassTable';
 import StudentCheckIn from './StudentCheckIn/StudentCheckIn';
-import './Static/AppStyle.css';
+import './StylesAndImages/AppStyle.css';
 
 const App = () => {
 

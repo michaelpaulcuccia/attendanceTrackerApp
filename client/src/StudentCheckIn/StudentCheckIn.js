@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import '../Static/StudentCheckInStyle.css';
+import '../StylesAndImages/StudentCheckInStyle.css';
 import moment from 'moment';
 import axios from 'axios';
 

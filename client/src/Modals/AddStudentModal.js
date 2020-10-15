@@ -2,7 +2,7 @@ import React from 'react';
 import { useForm } from "react-hook-form";
 import { Modal, Button } from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../Static/GenericForm.css';
+import '../StylesAndImages/GenericForm.css';
 import axios from 'axios';
 
 const AddStudentModal = props => {
