@@ -104,7 +104,7 @@ const EditClassModal = props => {
             <Modal
                 backdrop="static"
                 show={props.showEditModal}
-                closeEditModal={props.closeEditModal}
+                closeeditmodal={props.closeeditmodal}
             >
                 <Modal.Header>
                     <Modal.Title>Update/Delete Class</Modal.Title>
@@ -175,7 +175,7 @@ const EditClassModal = props => {
 
                         <br></br>
                         <Button type='submit' variant="primary">Save Changes</Button>
-                        <Button className='spacer' variant='secondary' onClick={(event) => props.closeEditModal(event)}>Cancel</Button>
+                        <Button className='spacer' variant='secondary' onClick={(event) => props.closeeditmodal(event)}>Cancel</Button>
                     </form>
                 </Modal.Body>
                 <Modal.Footer>

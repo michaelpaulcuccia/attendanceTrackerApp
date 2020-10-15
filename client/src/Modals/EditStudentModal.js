@@ -99,7 +99,7 @@ const StudentModal = props => {
             <Modal
                 backdrop="static"
                 show={props.showEditModal}
-                closeEditModal={props.closeEditModal}
+                closeeditmodal={props.closeeditmodal}
             >
                 <Modal.Header>
                     <Modal.Title>Update/Delete Student</Modal.Title>
@@ -185,7 +185,7 @@ const StudentModal = props => {
                         </p>
                         <br></br>
                         <Button variant="primary" type='submit'>Save Changes</Button>
-                        <Button style={{ marginLeft: '5px' }} variant='secondary' onClick={(event) => props.closeEditModal(event)}>Cancel</Button>
+                        <Button style={{ marginLeft: '5px' }} variant='secondary' onClick={(event) => props.closeeditmodal(event)}>Cancel</Button>
                     </form>
                 </Modal.Body>
                 <Modal.Footer>

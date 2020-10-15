@@ -14,17 +14,19 @@ const ClassTable = ({ showClass, setShowClass }) => {
     const [editModalData, setEditModalData] = useState({});
     const [showAddModal, setShowAddModal] = useState(false);
 
-    useEffect(() => {
-        const getData = async () => {
-            try {
-                const response = await fetch("http://localhost:5000/classes");
-                const data = await response.json();
-                //console.log(data);
-                setClasses(data);
-            } catch (err) {
-                console.error(err.message);
-            }
+
+    const getData = async () => {
+        try {
+            const response = await fetch("http://localhost:5000/classes");
+            const data = await response.json();
+            //console.log(data);
+            setClasses(data);
+        } catch (err) {
+            console.error(err.message);
         }
+    }
+
+    useEffect(() => {
         getData();
     }, []);
 
@@ -39,18 +41,20 @@ const ClassTable = ({ showClass, setShowClass }) => {
     }
 
     //closes edit modal
-    const closeEditModal = useCallback(
+    const closeeditmodal = useCallback(
         (event) => {
             event.preventDefault()
             setShowEditModal(showEditModal)
-        }, []);
+        }, [showEditModal]);
+    //added showEditModal to dependency
 
     //closes add modal
-    const closeAddModal = useCallback(
+    const closeaddmodal = useCallback(
         (event) => {
             event.preventDefault()
             setShowAddModal(showAddModal)
-        }, []);
+        }, [showAddModal]);
+    //added showEditModal to dependency
 
     const columnDefs = [
         {
@@ -76,20 +80,21 @@ const ClassTable = ({ showClass, setShowClass }) => {
         { headerName: "Class Title", field: "title", sortable: true, filter: true },
         { headerName: "Start", field: "starttime", sortable: true, filter: true },
         { headerName: "End", field: "endtime", sortable: true, filter: true },
-        { headerName: "Days",  
+        {
+            headerName: "Days",
 
             cellRenderer: (params) => {
                 //Get Data Array, Convert to String
                 let daysArray = params.data.days;
                 let convertedDaysArray = daysArray.toString();
-                
+
                 //HTML
                 var eDiv = document.createElement('div');
                 eDiv.innerHTML = `<span><p>${convertedDaysArray}</p></span>`;
 
                 return eDiv;
             }
-    
+
         },
         { headerName: "Type", field: "trainingtype", sortable: true, filter: true },
     ];
@@ -97,12 +102,12 @@ const ClassTable = ({ showClass, setShowClass }) => {
     return (
         <div className="ag-theme-alpine-dark" style={{ height: 300, width: '65%', margin: 'auto', marginTop: '35px' }}>
             <Button variant='dark'
-                style={{marginBottom: '3px', border: 'none'}}
+                style={{ marginBottom: '3px', border: 'none' }}
                 onClick={handleShowHide}>
                 Close
             </Button>
             <Button
-                style={{marginLeft: '5px', marginBottom: '3px', backgroundColor: '#7F8183', border: 'none'}}
+                style={{ marginLeft: '5px', marginBottom: '3px', backgroundColor: '#7F8183', border: 'none' }}
                 onClick={handleShowHideAdd}>
                 Add Class
                 </Button>
@@ -113,7 +118,7 @@ const ClassTable = ({ showClass, setShowClass }) => {
 
             <div>
                 <EditClassModal
-                    closeEditModal={closeEditModal}
+                    closeeditmodal={closeeditmodal}
                     editModalData={editModalData}
                     showEditModal={showEditModal}
                     setShowEditModal={setShowEditModal}
@@ -124,7 +129,7 @@ const ClassTable = ({ showClass, setShowClass }) => {
             <div>
                 {showAddModal &&
                     <AddClassModal
-                        closeAddModal={closeAddModal}
+                        closeaddmodal={closeaddmodal}
                         setClasses={setClasses}
                         showAddModal={showAddModal}
                         setShowAddModal={setShowAddModal}

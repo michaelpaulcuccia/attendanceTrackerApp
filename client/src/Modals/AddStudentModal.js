@@ -54,7 +54,7 @@ const AddStudentModal = props => {
             <Modal
                 backdrop="static"
                 show={props.showAddModal}
-                closeEditModal={props.closeAddModal}
+                closeaddModal={props.closeaddmodal}
             >
                 <Modal.Header>
                     <Modal.Title>Add Student</Modal.Title>
@@ -112,7 +112,7 @@ const AddStudentModal = props => {
                         </p>
                         <div>
                             <Button variant='primary' type='submit'>Submit</Button>
-                            <Button variant='secondary' className='spacer' onClick={(event) => props.closeAddModal(event)}>Cancel</Button>
+                            <Button variant='secondary' className='spacer' onClick={(event) => props.closeaddmodal(event)}>Cancel</Button>
                         </div>
                     </form>
                 </Modal.Body>

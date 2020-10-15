@@ -5,7 +5,7 @@ import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-alpine-dark.css";
 import EditStudentModal from '../Modals/EditStudentModal';
 import AddStudentModal from '../Modals/AddStudentModal';
-import  '../Static/ButtonStyle.css'
+import '../Static/ButtonStyle.css'
 
 
 const StudentTable = ({ showStudent, setShowStudent }) => {
@@ -14,7 +14,7 @@ const StudentTable = ({ showStudent, setShowStudent }) => {
     const [showEditModal, setShowEditModal] = useState(false);
     const [editModalData, setEditModalData] = useState({});
     const [showAddModal, setShowAddModal] = useState(false);
-    
+
     const getData = async () => {
         try {
             const response = await fetch("http://localhost:5000/students");
@@ -24,7 +24,7 @@ const StudentTable = ({ showStudent, setShowStudent }) => {
         } catch (err) {
             console.error(err.message);
         }
-    }; 
+    };
 
     useEffect(() => {
         getData();
@@ -40,19 +40,21 @@ const StudentTable = ({ showStudent, setShowStudent }) => {
         setShowAddModal(!showAddModal);
     };
 
-     //closes edit modal
-     const closeEditModal = useCallback(
+    //closes edit modal
+    const closeeditmodal = useCallback(
         (event) => {
             event.preventDefault()
             setShowEditModal(showEditModal)
-        },[]);
+        }, [showEditModal]);
+    //added showEditModal to dependency
 
     //closes add modal
-    const closeAddModal = useCallback(
+    const closeaddmodal = useCallback(
         (event) => {
             event.preventDefault()
             setShowAddModal(showAddModal)
-        },[]);
+        }, [showAddModal]);
+    //added showAddModal to dependency
 
     const columnDefs = [
         {
@@ -95,12 +97,12 @@ const StudentTable = ({ showStudent, setShowStudent }) => {
 
             <div className="ag-theme-alpine-dark" style={{ height: 400, width: '80%', margin: 'auto', marginTop: '20px' }}>
                 <Button variant='dark'
-                    style={{marginBottom: '3px', border: 'none'}}
+                    style={{ marginBottom: '3px', border: 'none' }}
                     onClick={handleShowHideTable}>
                     Close
                 </Button>
-                <Button 
-                    style={{marginLeft: '5px', marginBottom: '3px', backgroundColor: '#7F8183', border: 'none'}}
+                <Button
+                    style={{ marginLeft: '5px', marginBottom: '3px', backgroundColor: '#7F8183', border: 'none' }}
                     onClick={handleShowHideAdd}>
                     Add Student
                 </Button>
@@ -115,7 +117,7 @@ const StudentTable = ({ showStudent, setShowStudent }) => {
                 <EditStudentModal
                     showEditModal={showEditModal}
                     setShowEditModal={setShowEditModal}
-                    closeEditModal={closeEditModal}
+                    closeeditmodal={closeeditmodal}
                     editModalData={editModalData}
                     students={students}
                     setStudents={setStudents}
@@ -125,12 +127,12 @@ const StudentTable = ({ showStudent, setShowStudent }) => {
             <div>
                 {showAddModal &&
                     <AddStudentModal
-                    closeAddModal={closeAddModal}
-                    setStudents={setStudents}
-                    showAddModal={showAddModal}
-                    setShowAddModal={setShowAddModal}
+                        closeaddmodal={closeaddmodal}
+                        setStudents={setStudents}
+                        showAddModal={showAddModal}
+                        setShowAddModal={setShowAddModal}
                     />
-                } 
+                }
             </div>
 
         </div>
