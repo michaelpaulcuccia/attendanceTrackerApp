@@ -64,9 +64,9 @@ const StudentModal = props => {
 
     //delete a student
     const handleDelete = () => {
-        
+
         let id = props.editModalData._id;
-        
+
         let deleteObj = {
             _id: id,
             firstname: props.editModalData.firstname,
@@ -106,6 +106,7 @@ const StudentModal = props => {
                 </Modal.Header>
                 <Modal.Body>
                     <form onSubmit={handleSubmit(onSubmit)}>
+
                         <p className='field_text'>First Name:
                             <input
                                 type='text'
@@ -117,6 +118,7 @@ const StudentModal = props => {
                             >
                             </input>
                         </p>
+
                         <p className='field_text'>Last Name:
                         <input
                                 type='text'
@@ -128,6 +130,7 @@ const StudentModal = props => {
                             >
                             </input>
                         </p>
+
                         <p className='field_text'>Phone Number:
                             <input
                                 type='text'
@@ -139,6 +142,8 @@ const StudentModal = props => {
                             >
                             </input>
                         </p>
+                        <p><i>ex: (111)111-1111</i></p>
+
                         <p className='field_text'>Email:
                             <input
                                 type='text'
@@ -150,6 +155,7 @@ const StudentModal = props => {
                             >
                             </input>
                         </p>
+
                         <p className='field_text'>Belt:
                             <input
                                 type='text'
@@ -161,6 +167,7 @@ const StudentModal = props => {
                             >
                             </input>
                         </p>
+
                         <p className='field_text'>Stripes:
                             <input
                                 type='text'
@@ -172,6 +179,7 @@ const StudentModal = props => {
                             >
                             </input>
                         </p>
+
                         <p className='field_text'>Date of Last Promotion:
                             <input
                                 type='text'
@@ -183,9 +191,13 @@ const StudentModal = props => {
                             >
                             </input>
                         </p>
-                        <br></br>
-                        <Button variant="primary" type='submit'>Save Changes</Button>
-                        <Button style={{ marginLeft: '5px' }} variant='secondary' onClick={(event) => props.closeeditmodal(event)}>Cancel</Button>
+                        <p><i>ex: YYYY-MM-DD</i></p>
+
+                        <div>
+                            <Button variant="primary" type='submit'>Save Changes</Button>
+                            <Button style={{ marginLeft: '5px' }} variant='secondary' onClick={(event) => props.closeeditmodal(event)}>Cancel</Button>
+                        </div>
+                        
                     </form>
                 </Modal.Body>
                 <Modal.Footer>

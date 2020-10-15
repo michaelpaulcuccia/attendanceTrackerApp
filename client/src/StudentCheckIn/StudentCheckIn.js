@@ -107,7 +107,7 @@ const StudentCheckIn = () => {
             //See if a class is happening && Get Class using time-check
             let classObj;
             for (let i = 0; i < classes.length; i++) {
-                if (moment().isBetween(moment(classes[i].starttime, "h:mm a").subtract(200, 'm'), moment(classes[i].starttime, "h:mm a").add(200, 'm'))) {
+                if (moment().isBetween(moment(classes[i].starttime, "h:mm a").subtract(15, 'm'), moment(classes[i].starttime, "h:mm a").add(20, 'm'))) {
                     console.log('There is a class and you will be checked in.')
                     //console.log(classes[i]);
                     classObj = classes[i];

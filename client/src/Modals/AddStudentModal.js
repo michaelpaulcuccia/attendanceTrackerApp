@@ -61,59 +61,69 @@ const AddStudentModal = props => {
                 </Modal.Header>
                 <Modal.Body>
                     <form onSubmit={handleSubmit(onSubmit)}>
+
                         <p className='field_text'>First Name:
                     <input type='text'
                                 name='firstname'
                                 ref={register}
-                                className='active_text_space' 
-                                />
+                                className='active_text_space'
+                            />
                         </p>
+
                         <p className='field_text'>Last Name:
                     <input type='text'
                                 name='lastname'
                                 ref={register}
-                                className='active_text_space' 
-                                />
+                                className='active_text_space'
+                            />
                         </p>
+
                         <p className='field_text'>Phone Number:
                     <input type='text'
                                 name='phonenumber'
                                 ref={register}
-                                className='active_text_space' 
-                                />
+                                className='active_text_space'
+                            />
                         </p>
+                        <p><i>ex: (111)111-1111</i></p>
+                        
                         <p className='field_text'>Email:
                     <input type='text'
                                 name='email'
                                 ref={register}
-                                className='active_text_space' 
-                                />
+                                className='active_text_space'
+                            />
                         </p>
                         <p className='field_text'>Belt:
                     <input type='text'
                                 name='belt'
                                 ref={register}
-                                className='active_text_space' 
-                                />
+                                className='active_text_space'
+                            />
                         </p>
+
                         <p className='field_text'>Stripes:
                     <input type='text'
                                 name='stripes'
                                 ref={register}
-                                className='active_text_space' 
-                                />
+                                className='active_text_space'
+                            />
                         </p>
+
                         <p className='field_text'>Date of Last Promotion
                     <input type='text'
                                 name='dateoflastpromotion'
                                 ref={register}
-                                className='active_text_space' 
-                                />
+                                className='active_text_space'
+                            />
                         </p>
+                        <p><i>ex: YYYY-MM-DD</i></p>
+
                         <div>
                             <Button variant='primary' type='submit'>Submit</Button>
                             <Button variant='secondary' className='spacer' onClick={(event) => props.closeaddmodal(event)}>Cancel</Button>
                         </div>
+                        
                     </form>
                 </Modal.Body>
             </Modal>

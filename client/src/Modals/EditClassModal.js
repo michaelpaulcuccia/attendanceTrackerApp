@@ -10,7 +10,7 @@ const EditClassModal = props => {
     const { register, handleSubmit } = useForm();
 
     //console.log(props.editModalData)
-    
+
     const getData = async () => {
         try {
             const response = await fetch("http://localhost:5000/classes");
@@ -69,11 +69,11 @@ const EditClassModal = props => {
 
     };
 
-     //delete a class
-     const handleDelete = () => {
-        
+    //delete a class
+    const handleDelete = () => {
+
         let id = props.editModalData._id;
-        
+
         let deleteObj = {
             _id: id,
             title: props.editModalData.title,
@@ -110,9 +110,7 @@ const EditClassModal = props => {
                     <Modal.Title>Update/Delete Class</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <form
-                        onSubmit={handleSubmit(onSubmit)}
-                    >
+                    <form onSubmit={handleSubmit(onSubmit)}>
 
                         <p className='field_text'>Class Title:
                             <input
@@ -135,6 +133,7 @@ const EditClassModal = props => {
                             >
                             </input>
                         </p>
+                        <p><i>ex: 12:00am</i></p>
 
                         <p className='field_text'>End Time:
                             <input
@@ -146,6 +145,7 @@ const EditClassModal = props => {
                             >
                             </input>
                         </p>
+                        <p><i>ex: 12:00am</i></p>
 
                         <p className='field_text'>Days:
                             <input
@@ -157,6 +157,7 @@ const EditClassModal = props => {
                             >
                             </input>
                         </p>
+                        <p><i>ex: Sunday, ex: Sunday, Monday,...</i></p>
 
                         <p className='field_text'>Training Type:
                         <select
@@ -173,9 +174,11 @@ const EditClassModal = props => {
                             </select>
                         </p>
 
-                        <br></br>
-                        <Button type='submit' variant="primary">Save Changes</Button>
-                        <Button className='spacer' variant='secondary' onClick={(event) => props.closeeditmodal(event)}>Cancel</Button>
+                        <div>
+                            <Button type='submit' variant="primary">Save Changes</Button>
+                            <Button className='spacer' variant='secondary' onClick={(event) => props.closeeditmodal(event)}>Cancel</Button>
+                        </div>
+                        
                     </form>
                 </Modal.Body>
                 <Modal.Footer>

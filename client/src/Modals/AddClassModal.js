@@ -57,9 +57,8 @@ const AddClassModal = props => {
                     <Modal.Title>Add Class</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
-                    <form
-                        onSubmit={handleSubmit(onSubmit)}
-                    >
+                    <form onSubmit={handleSubmit(onSubmit)}>
+
                         <p className='field_text'>Title:
                     <input type='text'
                                 name='title'
@@ -75,6 +74,7 @@ const AddClassModal = props => {
                                 className='active_text_space'
                             />
                         </p>
+                        <p><i>ex: 12:00am</i></p>
 
                         <p className='field_text'>End Time:
                     <input type='text'
@@ -83,6 +83,7 @@ const AddClassModal = props => {
                                 className='active_text_space'
                             />
                         </p>
+                        <p><i>ex: 12:00am</i></p>
 
                         <p className='field_text'>Days:
                     <input type='text'
@@ -91,6 +92,7 @@ const AddClassModal = props => {
                                 className='active_text_space'
                             />
                         </p>
+                        <p><i>ex: Sunday, ex: Sunday, Monday,...</i></p>
 
                         <p className='field_text'>Training Type:
                         <select
@@ -111,6 +113,7 @@ const AddClassModal = props => {
                             <Button variant='primary' type='submit'>Submit</Button>
                             <Button variant='secondary' className='spacer' onClick={(event) => props.closeaddmodal(event)}>Cancel</Button>
                         </div>
+
                     </form>
                 </Modal.Body>
             </Modal>

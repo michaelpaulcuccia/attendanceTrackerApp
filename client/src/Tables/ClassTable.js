@@ -45,17 +45,15 @@ const ClassTable = ({ showClass, setShowClass }) => {
         (event) => {
             event.preventDefault()
             setShowEditModal(showEditModal)
-        }, [showEditModal]);
-    //added showEditModal to dependency
+        }, []);
 
     //closes add modal
     const closeaddmodal = useCallback(
         (event) => {
             event.preventDefault()
             setShowAddModal(showAddModal)
-        }, [showAddModal]);
-    //added showEditModal to dependency
-
+        }, []);
+  
     const columnDefs = [
         {
             headerName: "Edit/Delete",
