@@ -13,8 +13,8 @@ app.use(bodyParser.json());
 app.use(cors());
 
 //mongoDB Atlas connection
-const uri = process.env.ATLAS_URI;
-mongoose.connect('mongodb+srv://rbbjj:rbbjj123@cluster0-nmdvp.mongodb.net/test?retryWrites=true&w=majority', { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true });
+//const uri = process.env.ATLAS_URI;
+mongoose.connect('MONGO_URI', { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true });
 const connection = mongoose.connection;
 connection.once('open', () => {
     console.log("Connection to MongoDB Atlas is working!");
